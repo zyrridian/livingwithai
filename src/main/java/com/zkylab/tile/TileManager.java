@@ -45,7 +45,7 @@ public class TileManager {
         getTileImage();
 
         // Get the maxWorldCol and maxWorldRow
-        iStream = getClass().getResourceAsStream("/maps/dapur.txt");
+        iStream = getClass().getResourceAsStream("/maps/kota01.txt");
         bReader = new BufferedReader(new InputStreamReader(iStream));
 
         try {
@@ -58,7 +58,15 @@ public class TileManager {
         } catch (IOException e) {
             System.out.println("Exception!");
         }
-
+        
+        loadMap("/maps/kota01.txt", 0);
+        loadMap("/maps/kota02.txt", 1);
+        loadMap("/maps/kota03.txt", 2);
+        loadMap("/maps/kota04.txt", 3);
+        loadMap("/maps/kota05.txt", 4);
+        loadMap("/maps/utama.txt", 5);
+        loadMap("/maps/dapur.txt", 6);
+        loadMap("/maps/perpustakaan.txt", 7);
         // loadMap("/maps/worldmap.txt", 0);
         // loadMap("/maps/map.txt", 0);
         // loadMap("/maps/indoor01.txt", 1);
@@ -67,7 +75,7 @@ public class TileManager {
         // loadMap("/maps/map02.txt", 4);
         // loadMap("/maps/map03.txt", 5);
         // loadMap("/maps/labirin.txt", 6);
-        loadMap("/maps/utama.txt", 7);
+        // loadMap("/maps/utama.txt", 7);
         loadMap("/maps/dapur.txt", 8);
         loadMap("/maps/perpustakaan.txt", 9);
 

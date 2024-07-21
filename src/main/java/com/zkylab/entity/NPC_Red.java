@@ -4,15 +4,15 @@ import java.util.Random;
 
 import com.zkylab.common.GamePanel;
 
-public class NPC_OldMan extends Entity {
+public class NPC_Red extends Entity {
 
-    public static final String npcName = "Old Man";
+    public static final String npcName = "Red";
 
-    public NPC_OldMan(GamePanel gamePanel) {
+    public NPC_Red(GamePanel gamePanel) {
         super(gamePanel);
 
         name = npcName;
-        direction = "left";
+        direction = "down";
         speed = 1;
 
         solidArea.x = 8;
@@ -22,7 +22,7 @@ public class NPC_OldMan extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-        dialogueSet = -1;
+        // dialogueSet = -1;
 
         getImage();
         setDialogue();
@@ -30,14 +30,14 @@ public class NPC_OldMan extends Entity {
     }
 
     public void getImage() {
-        up1 = setup("/npc/oldman_up_1", gamePanel.tileSize, gamePanel.tileSize);
-        up2 = setup("/npc/oldman_up_2", gamePanel.tileSize, gamePanel.tileSize);
-        left1 = setup("/npc/oldman_left_1", gamePanel.tileSize, gamePanel.tileSize);
-        left2 = setup("/npc/oldman_left_2", gamePanel.tileSize, gamePanel.tileSize);
-        down1 = setup("/npc/oldman_down_1", gamePanel.tileSize, gamePanel.tileSize);
-        down2 = setup("/npc/oldman_down_2", gamePanel.tileSize, gamePanel.tileSize);
-        right1 = setup("/npc/oldman_right_1", gamePanel.tileSize, gamePanel.tileSize);
-        right2 = setup("/npc/oldman_right_2", gamePanel.tileSize, gamePanel.tileSize);
+        up1 = setup("/npc/red_walk_up_3", gamePanel.tileSize, gamePanel.tileSize);
+        up2 = setup("/npc/red_walk_up_2", gamePanel.tileSize, gamePanel.tileSize);
+        left1 = setup("/npc/red_walk_left_3", gamePanel.tileSize, gamePanel.tileSize);
+        left2 = setup("/npc/red_walk_left_2", gamePanel.tileSize, gamePanel.tileSize);
+        down1 = setup("/npc/red_walk_down_3", gamePanel.tileSize, gamePanel.tileSize);
+        down2 = setup("/npc/red_walk_down_2", gamePanel.tileSize, gamePanel.tileSize);
+        right1 = setup("/npc/red_walk_right_3", gamePanel.tileSize, gamePanel.tileSize);
+        right2 = setup("/npc/red_walk_right_2", gamePanel.tileSize, gamePanel.tileSize);
     }
 
     public void setDialogue() {

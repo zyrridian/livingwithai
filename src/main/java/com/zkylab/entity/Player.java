@@ -14,25 +14,31 @@ import com.zkylab.object.OBJ_Sword_Normal;
 
 public class Player extends Entity {
 
+    // KeyHandler instance to manage player inputs
     KeyHandler keyHandler;
 
+    // Animation and control variables
     int standCounter = 0;
     public final int screenX;
     public final int screenY;
     public boolean attackCanceled = false;
     public boolean lightUpdated = false;
 
+    /**
+     * Constructor for the Player class.
+     * 
+     * @param gamePanel  The main game panel.
+     * @param keyHandler Handles player input.
+     */
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
-
         super(gamePanel);
-
         this.keyHandler = keyHandler;
 
-        // Set player position in the middle
+        // Initialize player position
         screenX = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 2);
         screenY = gamePanel.screenHeight / 2 - (gamePanel.tileSize / 2);
 
-        // Determine player's solid area that affect the collision
+        // Initialize player's solid area for collision detection
         solidArea = new Rectangle();
         solidArea.x = 10;
         solidArea.y = 17;
@@ -44,15 +50,17 @@ public class Player extends Entity {
         setDefaultValues();
     }
 
+    /**
+     * Sets the default values for the player's attributes.
+     */
     public void setDefaultValues() {
-
-        worldX = (int) (gamePanel.tileSize * 24.5);
-        worldY = gamePanel.tileSize * 35;
+        worldX = gamePanel.tileSize * 11;
+        worldY = gamePanel.tileSize * 20;
         defaultSpeed = 4;
         speed = defaultSpeed;
-        direction = "up";
+        direction = "right";
 
-        // Player Status
+        // Player's initial status
         level = 1;
         maxLife = 6;
         life = maxLife;
@@ -68,7 +76,6 @@ public class Player extends Entity {
         currentShield = new OBJ_Shield_Wood(gamePanel);
         currentLight = null;
         projectile = new OBJ_Fireball(gamePanel);
-        // projectile = new OBJ_Rock(gamePanel);
         attack = getAttack();
         defense = getDefense();
 
@@ -77,20 +84,28 @@ public class Player extends Entity {
         getGuardImage();
         setItems();
         setDialogue();
-
     }
 
+    /**
+     * Resets the player's position and direction to default values.
+     */
     public void setDefaultPosition() {
         gamePanel.currentMap = 0;
-        worldX = gamePanel.tileSize * 24;
-        worldY = gamePanel.tileSize * 28;
+        worldX = gamePanel.tileSize * 11;
+        worldY = (int) (gamePanel.tileSize * 19.5);
         direction = "left";
     }
 
+    /**
+     * Sets the player's dialogue messages.
+     */
     public void setDialogue() {
         dialogues[0][0] = "You are level " + level + " now!\nYou feel stronger!";
     }
 
+    /**
+     * Restores the player's status to default values.
+     */
     public void restoreStatus() {
         life = maxLife;
         mana = maxMana;
@@ -103,6 +118,9 @@ public class Player extends Entity {
         lightUpdated = true;
     }
 
+    /**
+     * Initializes the player's inventory with default items.
+     */
     public void setItems() {
         inventory.clear();
         inventory.add(currentWeapon);
@@ -110,6 +128,11 @@ public class Player extends Entity {
         inventory.add(new OBJ_Key(gamePanel));
     }
 
+    /**
+     * Calculates and returns the player's attack value.
+     * 
+     * @return The attack value.
+     */
     public int getAttack() {
         attackArea = currentWeapon.attackArea;
         motion1_duration = currentWeapon.motion1_duration;
@@ -117,10 +140,20 @@ public class Player extends Entity {
         return attack = strength * currentWeapon.attackValue;
     }
 
+    /**
+     * Calculates and returns the player's defense value.
+     * 
+     * @return The defense value.
+     */
     public int getDefense() {
         return defense = dexterity * currentShield.defenseValue;
     }
 
+    /**
+     * Finds the slot index of the current weapon in the inventory.
+     * 
+     * @return The index of the current weapon.
+     */
     public int getCurrentWeaponSlot() {
         int currentWeaponSlot = 0;
         for (int i = 0; i < inventory.size(); i++) {
@@ -131,6 +164,11 @@ public class Player extends Entity {
         return currentWeaponSlot;
     }
 
+    /**
+     * Finds the slot index of the current shield in the inventory.
+     * 
+     * @return The index of the current shield.
+     */
     public int getCurrentShieldSlot() {
         int currentShieldSlot = 0;
         for (int i = 0; i < inventory.size(); i++) {
@@ -141,6 +179,9 @@ public class Player extends Entity {
         return currentShieldSlot;
     }
 
+    /**
+     * Loads the player's images for different actions.
+     */
     public void getImage() {
         up1 = setup("/player/mc_walk_up_1", gamePanel.tileSize, gamePanel.tileSize);
         up2 = setup("/player/mc_walk_up_2", gamePanel.tileSize, gamePanel.tileSize);
@@ -156,6 +197,11 @@ public class Player extends Entity {
         right3 = setup("/player/mc_walk_right_3", gamePanel.tileSize, gamePanel.tileSize);
     }
 
+    /**
+     * Sets the player's sleeping image for all directions.
+     * 
+     * @param image The image to set.
+     */
     public void getSleepingImage(BufferedImage image) {
         up1 = image;
         up2 = image;
@@ -167,43 +213,57 @@ public class Player extends Entity {
         right2 = image;
     }
 
+    /**
+     * Loads the player's attack images based on the current weapon type.
+     */
     public void getAttackImage() {
-
         if (currentWeapon.type == type_sword) {
-            attackUp1 = setup("/player/boy_attack_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackUp2 = setup("/player/boy_attack_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackDown1 = setup("/player/boy_attack_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackDown2 = setup("/player/boy_attack_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackLeft1 = setup("/player/boy_attack_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
-            attackLeft2 = setup("/player/boy_attack_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
-            attackRight1 = setup("/player/boy_attack_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
-            attackRight2 = setup("/player/boy_attack_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+            loadSwordAttackImages();
         }
-
         if (currentWeapon.type == type_axe) {
-            attackUp1 = setup("/player/boy_axe_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackUp2 = setup("/player/boy_axe_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackDown1 = setup("/player/boy_axe_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackDown2 = setup("/player/boy_axe_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackLeft1 = setup("/player/boy_axe_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
-            attackLeft2 = setup("/player/boy_axe_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
-            attackRight1 = setup("/player/boy_axe_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
-            attackRight2 = setup("/player/boy_axe_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+            loadAxeAttackImages();
         }
-
         if (currentWeapon.type == type_pickaxe) {
-            attackUp1 = setup("/player/boy_pick_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackUp2 = setup("/player/boy_pick_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackDown1 = setup("/player/boy_pick_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackDown2 = setup("/player/boy_pick_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
-            attackLeft1 = setup("/player/boy_pick_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
-            attackLeft2 = setup("/player/boy_pick_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
-            attackRight1 = setup("/player/boy_pick_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
-            attackRight2 = setup("/player/boy_pick_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+            loadPickaxeAttackImages();
         }
-
     }
 
+    private void loadSwordAttackImages() {
+        attackUp1 = setup("/player/boy_attack_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackUp2 = setup("/player/boy_attack_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown1 = setup("/player/boy_attack_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown2 = setup("/player/boy_attack_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackLeft1 = setup("/player/boy_attack_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackLeft2 = setup("/player/boy_attack_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight1 = setup("/player/boy_attack_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight2 = setup("/player/boy_attack_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+    }
+
+    private void loadAxeAttackImages() {
+        attackUp1 = setup("/player/boy_axe_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackUp2 = setup("/player/boy_axe_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown1 = setup("/player/boy_axe_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown2 = setup("/player/boy_axe_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackLeft1 = setup("/player/boy_axe_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackLeft2 = setup("/player/boy_axe_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight1 = setup("/player/boy_axe_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight2 = setup("/player/boy_axe_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+    }
+
+    private void loadPickaxeAttackImages() {
+        attackUp1 = setup("/player/boy_pick_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackUp2 = setup("/player/boy_pick_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown1 = setup("/player/boy_pick_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown2 = setup("/player/boy_pick_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackLeft1 = setup("/player/boy_pick_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackLeft2 = setup("/player/boy_pick_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight1 = setup("/player/boy_pick_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight2 = setup("/player/boy_pick_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+    }
+
+    /**
+     * Loads the player's guarding images.
+     */
     public void getGuardImage() {
         guardUp = setup("/player/boy_guard_up", gamePanel.tileSize, gamePanel.tileSize);
         guardDown = setup("/player/boy_guard_down", gamePanel.tileSize, gamePanel.tileSize);
@@ -211,6 +271,9 @@ public class Player extends Entity {
         guardRight = setup("/player/boy_guard_right", gamePanel.tileSize, gamePanel.tileSize);
     }
 
+    /**
+     * Updates the player's actions based on key inputs and game state.
+     */
     public void update() {
 
         if (knockback) {
@@ -324,12 +387,10 @@ public class Player extends Entity {
             // Change walking image every 10 frames
             spriteCounter++;
             if (spriteCounter > 12) {
-                if (spriteNumber == 1) {
-                    spriteNumber = 2;
-                } else if (spriteNumber == 2) {
+                if (spriteNumber == 2 || spriteNumber == 1) {
                     spriteNumber = 3;
-                } else if (spriteNumber == 3) {
-                    spriteNumber = 1;
+                } else if (spriteNumber == 3 || spriteNumber == 1) {
+                    spriteNumber = 2;
                 }
                 spriteCounter = 0;
             }
@@ -617,6 +678,11 @@ public class Player extends Entity {
         return canObtain;
     }
 
+    /**
+     * Draws the player on the screen.
+     * 
+     * @param g2 The Graphics2D object for drawing.
+     */
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;

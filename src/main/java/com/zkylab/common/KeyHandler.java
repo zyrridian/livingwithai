@@ -117,8 +117,11 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_R) {
             switch (gamePanel.currentMap) {
-                case 0: gamePanel.tileManager.loadMap("/maps/worldV3.txt", 0); break;
-                case 1: gamePanel.tileManager.loadMap("/maps/interior.txt", 1); break;
+                case 0: gamePanel.tileManager.loadMap("/maps/kota01.txt", 0); break;
+                case 1: gamePanel.tileManager.loadMap("/maps/kota02.txt", 1); break;
+                case 2: gamePanel.tileManager.loadMap("/maps/kota03.txt", 2); break;
+                case 3: gamePanel.tileManager.loadMap("/maps/kota04.txt", 3); break;
+                case 4: gamePanel.tileManager.loadMap("/maps/kota05.txt", 4); break;
             }
             
         }

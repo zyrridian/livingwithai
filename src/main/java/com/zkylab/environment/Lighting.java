@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import com.zkylab.common.GamePanel;
 
 public class Lighting {
-    
+
     GamePanel gamePanel;
     BufferedImage darknessFilter;
     public int dayCounter;
@@ -36,7 +36,7 @@ public class Lighting {
         Graphics2D g2 = (Graphics2D) darknessFilter.getGraphics();
 
         if (gamePanel.player.currentLight == null) {
-            g2.setColor(new Color(0, 0, 0.1F, 0.97F));
+            g2.setColor(new Color(0, 0, 0.1F, 0.90F));
         } else {
 
             // Get the center x and y of the light circle
@@ -53,13 +53,13 @@ public class Lighting {
             color[2] = new Color(0, 0, 0.1F, 0.52F);
             color[3] = new Color(0, 0, 0.1F, 0.61F);
             color[4] = new Color(0, 0, 0.1F, 0.69F);
-            color[5] = new Color(0, 0, 0.1F, 0.76F);
-            color[6] = new Color(0, 0, 0.1F, 0.82F);
-            color[7] = new Color(0, 0, 0.1F, 0.87F);
-            color[8] = new Color(0, 0, 0.1F, 0.91F);
-            color[9] = new Color(0, 0, 0.1F, 0.92F);
-            color[10] = new Color(0, 0, 0.1F, 0.93F);
-            color[11] = new Color(0, 0, 0.1F, 0.94F);
+            color[5] = new Color(0, 0, 0.1F, 0.75F);
+            color[6] = new Color(0, 0, 0.1F, 0.78F);
+            color[7] = new Color(0, 0, 0.1F, 0.81F);
+            color[8] = new Color(0, 0, 0.1F, 0.84F);
+            color[9] = new Color(0, 0, 0.1F, 0.86F);
+            color[10] = new Color(0, 0, 0.1F, 0.88F);
+            color[11] = new Color(0, 0, 0.1F, 0.90F);
 
             // Determine the colors distance
             fraction[0] = 0F;
@@ -76,7 +76,8 @@ public class Lighting {
             fraction[11] = 1F;
 
             // Create a gradation paint settings for the light circle
-            RadialGradientPaint gradientPaint = new RadialGradientPaint(centerX, centerY, gamePanel.player.currentLight.lightRadius, fraction, color);
+            RadialGradientPaint gradientPaint = new RadialGradientPaint(centerX, centerY,
+                    gamePanel.player.currentLight.lightRadius, fraction, color);
 
             // Set the gradient data on g2
             g2.setPaint(gradientPaint);
@@ -104,7 +105,7 @@ public class Lighting {
         // Check the sate of the day
         if (dayState == day) {
             dayCounter++;
-            if (dayCounter > 600) { // Day state duration: 10 second
+            if (dayCounter > 7200) { // Day state duration: 10 second
                 dayState = dusk;
                 dayCounter = 0;
             }
@@ -118,7 +119,7 @@ public class Lighting {
         }
         if (dayState == night) {
             dayCounter++;
-            if (dayCounter > 600) { // Night state duration
+            if (dayCounter > 7200) { // Night state duration
                 dayState = dawn;
                 dayCounter = 0;
             }
@@ -141,7 +142,7 @@ public class Lighting {
 
         // draw darkness, always dark in dungeon
         if (gamePanel.currentArea == GamePanel.OUTSIDE_AREA || gamePanel.currentArea == GamePanel.DUNGEON_AREA) {
-            g2.drawImage(darknessFilter, 0, 0, null);    
+            g2.drawImage(darknessFilter, 0, 0, null);
         }
 
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1F)); // always bright in indoor
@@ -149,12 +150,20 @@ public class Lighting {
         // Debug
         String situation = "";
         switch (dayState) {
-            case day: situation = "Day"; break;
-            case dusk: situation = "Dusk"; break;
-            case night: situation = "Night"; break;
-            case dawn: situation = "Dawn"; break;
+            case day:
+                situation = "Day";
+                break;
+            case dusk:
+                situation = "Dusk";
+                break;
+            case night:
+                situation = "Night";
+                break;
+            case dawn:
+                situation = "Dawn";
+                break;
         }
-        
+
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(32F));
         g2.drawString(situation, 800, 500);
