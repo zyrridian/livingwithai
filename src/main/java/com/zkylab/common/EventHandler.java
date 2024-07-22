@@ -118,28 +118,29 @@ public class EventHandler {
             skeletonLord();
 
         // teleport new map
-        else if (hit(7, 17, 28, "left"))
-            teleport(8, 28, 27, GamePanel.INDOOR_AREA);
-        else if (hit(8, 29, 27, "right"))
-            teleport(7, 18, 28, GamePanel.INDOOR_AREA);
-        else if (hit(9, 24, 11, "up"))
-            teleport(7, 24, 28, GamePanel.INDOOR_AREA);
-        else if (hit(9, 25, 11, "up"))
-            teleport(7, 24, 28, GamePanel.INDOOR_AREA);
-        else if (hit(7, 24, 28, "down"))
-            teleport(9, (int) (25.5), 11, GamePanel.INDOOR_AREA);
+        // else if (hit(7, 17, 28, "left"))
+        // teleport(8, 28, 27, GamePanel.INDOOR_AREA);
+        // else if (hit(8, 29, 27, "right"))
+        // teleport(7, 18, 28, GamePanel.INDOOR_AREA);
+        // else if (hit(9, 24, 11, "up"))
+        // teleport(7, 24, 28, GamePanel.INDOOR_AREA);
+        // else if (hit(9, 25, 11, "up"))
+        // teleport(7, 24, 28, GamePanel.INDOOR_AREA);
+        // else if (hit(7, 24, 28, "down"))
+        // teleport(9, (int) (25.5), 11, GamePanel.INDOOR_AREA);
 
-        else if (hit(7, 32, 24, "up") || hit(7, 27, 24, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 2);
-        else if (hit(7, 23, 24, "up") || hit(7, 34, 24, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 3);
+        // else if (hit(7, 32, 24, "up") || hit(7, 27, 24, "up"))
+        // interactObject(GamePanel.DIALOGUE_STATE, 2);
+        // else if (hit(7, 23, 24, "up") || hit(7, 34, 24, "up"))
+        // interactObject(GamePanel.DIALOGUE_STATE, 3);
 
-        else if (hit(7, 20, 24, "up") || hit(7, 21, 24, "up") || hit(7, 22, 24, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 4);
-        else if (hit(7, 19, 24, "down") || hit(7, 20, 25, "left") ||
-                hit(7, 20, 26, "left") || hit(7, 20, 27, "left") ||
-                hit(7, 19, 28, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 5);
+        // else if (hit(7, 20, 24, "up") || hit(7, 21, 24, "up") || hit(7, 22, 24,
+        // "up"))
+        // interactObject(GamePanel.DIALOGUE_STATE, 4);
+        // else if (hit(7, 19, 24, "down") || hit(7, 20, 25, "left") ||
+        // hit(7, 20, 26, "left") || hit(7, 20, 27, "left") ||
+        // hit(7, 19, 28, "up"))
+        // interactObject(GamePanel.DIALOGUE_STATE, 5);
 
         // ========== EVENT TELEPORT ========== //
         else if (hit(0, 28, 14, "up") || hit(0, 29, 14, "up"))
@@ -183,8 +184,6 @@ public class EventHandler {
             teleport(0, 20, 19, GamePanel.OUTSIDE_AREA); // Teleport rumah ke kota 1
 
         // Locked door
-        else if (hit(0, 23, 19, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 2);
         else if (hit(0, 26, 19, "up"))
             interactObject(GamePanel.DIALOGUE_STATE, 2);
         else if (hit(0, 33, 19, "up"))
@@ -198,10 +197,15 @@ public class EventHandler {
         else if (hit(3, 19, 29, "up"))
             interactObject(GamePanel.DIALOGUE_STATE, 2);
 
-        else if (hit(4, 33, 26, "right") || hit(4, 33, 27, "right") || hit(4, 33, 28, "right")) {
+        else if (hit(4, 33, 26, "right") || hit(4, 33, 27, "right") || hit(4, 33, 28, "right"))
             autoDialog(4, 33, 26, GamePanel.DIALOGUE_STATE, 6);
-            // interactObject(GamePanel.DIALOGUE_STATE, 6);
-        }
+
+        // ========== STUDIO EVENTS ========== //
+        else if (hit(0, 23, 19, "up"))
+            openTheDoor(8, 28, 42, GamePanel.INDOOR_AREA); // Teleport kota 1 ke studio 1
+        else if (hit(8, 28, 42, "down"))
+            teleport(0, 23, 19, GamePanel.OUTSIDE_AREA); // Teleport studio 1 ke kota 1
+
     }
 
     /**

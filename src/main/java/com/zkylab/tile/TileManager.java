@@ -67,6 +67,7 @@ public class TileManager {
         loadMap("/maps/utama.txt", 5);
         loadMap("/maps/dapur.txt", 6);
         loadMap("/maps/perpustakaan.txt", 7);
+        loadMap("/maps/studio01.txt", 8);
         // loadMap("/maps/worldmap.txt", 0);
         // loadMap("/maps/map.txt", 0);
         // loadMap("/maps/indoor01.txt", 1);
@@ -76,7 +77,6 @@ public class TileManager {
         // loadMap("/maps/map03.txt", 5);
         // loadMap("/maps/labirin.txt", 6);
         // loadMap("/maps/utama.txt", 7);
-        loadMap("/maps/dapur.txt", 8);
         loadMap("/maps/perpustakaan.txt", 9);
 
     }
