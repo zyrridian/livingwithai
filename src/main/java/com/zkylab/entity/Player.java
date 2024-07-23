@@ -231,14 +231,14 @@ public class Player extends Entity {
     }
 
     private void loadSwordAttackImages() {
-        attackUp1 = setup("/player/boy_attack_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
-        attackUp2 = setup("/player/boy_attack_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
-        attackDown1 = setup("/player/boy_attack_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
-        attackDown2 = setup("/player/boy_attack_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
-        attackLeft1 = setup("/player/boy_attack_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
-        attackLeft2 = setup("/player/boy_attack_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
-        attackRight1 = setup("/player/boy_attack_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
-        attackRight2 = setup("/player/boy_attack_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackUp1 = setup("/player/mc_attack_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackUp2 = setup("/player/mc_attack_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown1 = setup("/player/mc_attack_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown2 = setup("/player/mc_attack_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackLeft1 = setup("/player/mc_attack_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackLeft2 = setup("/player/mc_attack_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight1 = setup("/player/mc_attack_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight2 = setup("/player/mc_attack_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
     }
 
     private void loadAxeAttackImages() {

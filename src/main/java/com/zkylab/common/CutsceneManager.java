@@ -47,8 +47,6 @@ public class CutsceneManager {
         }
     }
 
-    
-
     public void scene_opening() {
 
         // Shut the iron door
