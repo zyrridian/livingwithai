@@ -30,6 +30,7 @@ public class NPC_Librarian extends Entity {
     }
 
     public void getImage() {
+        avatar = setup("/npc/avatar_librarian", gamePanel.tileSize, gamePanel.tileSize);
         up1 = setup("/npc/librarian_walk_up_1", gamePanel.tileSize, gamePanel.tileSize);
         up2 = setup("/npc/librarian_walk_up_1", gamePanel.tileSize, gamePanel.tileSize);
         left1 = setup("/npc/librarian_walk_left_1", gamePanel.tileSize, gamePanel.tileSize);

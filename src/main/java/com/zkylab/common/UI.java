@@ -19,7 +19,7 @@ public class UI {
 
     GamePanel gamePanel;
     Graphics2D g2;
-    public Font maruMonica, purisaBold;
+    public Font maruMonica, purisaBold, yoster, november;
     BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank, coin;
     public boolean messageOn = false;
     ArrayList<String> message = new ArrayList<>();
@@ -46,6 +46,10 @@ public class UI {
             maruMonica = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             inputStream = getClass().getResourceAsStream("/font/purisa-bold.ttf");
             purisaBold = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+            inputStream = getClass().getResourceAsStream("/font/yoster.ttf");
+            yoster = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+            inputStream = getClass().getResourceAsStream("/font/november.ttf");
+            november = Font.createFont(Font.TRUETYPE_FONT, inputStream);
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -78,7 +82,7 @@ public class UI {
         this.g2 = g2;
 
         // g2.setFont(maruMonica);
-        g2.setFont(purisaBold);
+        g2.setFont(november);
         g2.setColor(Color.white);
 
         // Title State
@@ -200,7 +204,7 @@ public class UI {
         }
 
         g2.setColor(Color.white);
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 60F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
         String text = "Life: " + gamePanel.player.life;
         x = getXforCenteredText(text);
         y = gamePanel.tileSize * 3;
@@ -250,7 +254,7 @@ public class UI {
                     g2.setColor(new Color(255, 0, 30));
                     g2.fillRect(x, y, (int) hpBarValue, 20);
 
-                    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 24F));
+                    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
                     g2.setColor(Color.white);
                     g2.drawString(monster.name, x + 4, y - 10);
 
@@ -266,7 +270,7 @@ public class UI {
         int messageX = gamePanel.tileSize;
         int messageY = gamePanel.tileSize * 4;
 
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 28F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
 
         for (int i = 0; i < message.size(); i++) {
             if (message.get(i) != null) {
@@ -303,7 +307,7 @@ public class UI {
             g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
 
             // Title Name
-            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 60F));
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
             String text = "Living with AI";
             int x = getXforCenteredText(text);
             int y = gamePanel.tileSize * 3;
@@ -322,7 +326,7 @@ public class UI {
             g2.drawImage(gamePanel.player.down1, x, y, gamePanel.tileSize * 2, gamePanel.tileSize * 2, null);
 
             // Menu
-            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 30F));
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
 
             text = "NEW GAME";
             x = getXforCenteredText(text);
@@ -365,16 +369,53 @@ public class UI {
 
     public void drawDialogueScreen() {
 
-        // Window
-        int x = gamePanel.tileSize * 3;
-        int y = gamePanel.tileSize / 2;
-        int width = gamePanel.screenWidth - (gamePanel.tileSize * 6);
-        int height = gamePanel.tileSize * 4;
-        drawSubWindow(x, y, width, height);
+        int x; 
+        int y;
+        int width;
+        int height;
 
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
-        x += gamePanel.tileSize - (16);
-        y += gamePanel.tileSize;
+        if (npc != null && npc.name != null && npc.avatar != null) {
+            // Picture box
+            x = gamePanel.tileSize * 2;
+            y = gamePanel.screenHeight - (gamePanel.tileSize / 2) - gamePanel.tileSize * 4;
+            width = gamePanel.tileSize * 3;
+            height = gamePanel.tileSize * 3;
+            drawSubWindow(x, y, width, height);
+            g2.drawImage(npc.avatar, x + 15, y + 15, width - 25, height - 25, null);
+
+            // Name box
+            x = gamePanel.tileSize * 2;
+            y = y + height;
+            width = gamePanel.tileSize * 3;
+            height = gamePanel.tileSize * 1;
+            drawSubWindow(x, y, width, height);
+
+            // Set Name box Text
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+            g2.drawString(npc.name, x + (gamePanel.tileSize - 32), y + (gamePanel.tileSize - 14));
+
+            // Dialog box
+            x = x + width;
+            y = gamePanel.screenHeight - (gamePanel.tileSize / 2) - gamePanel.tileSize * 4;
+            width = gamePanel.screenWidth - (gamePanel.tileSize * 7);
+            height = gamePanel.tileSize * 4;
+            drawSubWindow(x, y, width, height);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
+            x += gamePanel.tileSize - (16);
+            y += gamePanel.tileSize;
+        } else {
+            // Dialog box
+            x = gamePanel.tileSize * 2;
+            y = gamePanel.screenHeight - gamePanel.tileSize * 4;
+            width = gamePanel.screenWidth - (gamePanel.tileSize * 4);
+            height = gamePanel.tileSize * 4 - (gamePanel.tileSize / 2);
+            drawSubWindow(x, y, width, height);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
+            x += gamePanel.tileSize - (16);
+            y += gamePanel.tileSize;
+        }
 
         if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
             // Display text letter by letter
@@ -404,16 +445,13 @@ public class UI {
             }
         }
 
-        
         for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, x, y);
             y += 40;
         }
-
     }
 
     public void drawCharacterScreen() {
-
         // Create a Frame
         final int frameX = gamePanel.tileSize * 2;
         final int frameY = gamePanel.tileSize; 
@@ -652,7 +690,7 @@ public class UI {
         int y;
         String text;
 
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 80F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
 
         text = "Game Over";
 
@@ -1108,16 +1146,14 @@ public class UI {
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
-
         Color color = new Color(0, 0, 0, 210);
         g2.setColor(color);
-        g2.fillRoundRect(x, y, width, height, 35, 35);
+        g2.fillRect(x, y, width, height);
 
         color = new Color(255, 255, 255);
         g2.setColor(color);
         g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x + 5,  y + 5, width - 10, height - 10, 25, 25);
-
+        g2.drawRect(x + 5,  y + 5, width - 10, height - 10);
     }
 
     public int getXforCenteredText(String text) {

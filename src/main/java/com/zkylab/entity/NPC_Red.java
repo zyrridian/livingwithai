@@ -30,6 +30,7 @@ public class NPC_Red extends Entity {
     }
 
     public void getImage() {
+        avatar = setup("/npc/avatar_red", gamePanel.tileSize, gamePanel.tileSize);
         up1 = setup("/npc/red_walk_up_3", gamePanel.tileSize, gamePanel.tileSize);
         up2 = setup("/npc/red_walk_up_2", gamePanel.tileSize, gamePanel.tileSize);
         left1 = setup("/npc/red_walk_left_3", gamePanel.tileSize, gamePanel.tileSize);

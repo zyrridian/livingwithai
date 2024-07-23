@@ -30,6 +30,7 @@ public class NPC_Girl extends Entity {
     }
 
     public void getImage() {
+        avatar = setup("/npc/avatar_girl", gamePanel.tileSize, gamePanel.tileSize);
         up1 = setup("/npc/girl_walk_up_1", gamePanel.tileSize, gamePanel.tileSize);
         up2 = setup("/npc/girl_walk_up_1", gamePanel.tileSize, gamePanel.tileSize);
         left1 = setup("/npc/girl_walk_left_1", gamePanel.tileSize, gamePanel.tileSize);
