@@ -9,6 +9,7 @@ import com.zkylab.common.GamePanel;
 import com.zkylab.common.KeyHandler;
 import com.zkylab.object.OBJ_Fireball;
 import com.zkylab.object.OBJ_Key;
+import com.zkylab.object.OBJ_Lantern;
 import com.zkylab.object.OBJ_Shield_Wood;
 import com.zkylab.object.OBJ_Sword_Normal;
 
@@ -126,6 +127,7 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gamePanel));
+        inventory.add(new OBJ_Lantern(gamePanel));
     }
 
     /**
