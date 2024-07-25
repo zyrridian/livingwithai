@@ -5,18 +5,18 @@ import java.util.Random;
 import com.zkylab.common.GamePanel;
 import com.zkylab.entity.Entity;
 
-public class PET_Dog extends Entity {
+public class PET_Johnson extends Entity {
 
-    public static final String npcName = "Dog";
+    public static final String npcName = "Johnson";
     GamePanel gamePanel;
 
-    public PET_Dog(GamePanel gamePanel) {
+    public PET_Johnson(GamePanel gamePanel) {
         super(gamePanel);
         this.gamePanel = gamePanel;
 
         name = npcName;
         direction = "left";
-        speed = 3;
+        speed = 0;
 
         solidArea.x = 8;
         solidArea.y = 16;
@@ -33,19 +33,23 @@ public class PET_Dog extends Entity {
     }
 
     public void getImage() {
-        avatar = setup("/pet/avatar_dog", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
-        up1 = setup("/pet/dog_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
-        up2 = setup("/pet/dog_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
-        left1 = setup("/pet/dog_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
-        left2 = setup("/pet/dog_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
-        down1 = setup("/pet/dog_walk_right_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
-        down2 = setup("/pet/dog_walk_right_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
-        right1 = setup("/pet/dog_walk_right_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
-        right2 = setup("/pet/dog_walk_right_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
+        avatar = setup("/pet/avatar_johnson", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
+        up1 = setup("/pet/johnson_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
+        up2 = setup("/pet/johnson_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
+        left1 = setup("/pet/johnson_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
+        left2 = setup("/pet/johnson_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
+        down1 = setup("/pet/johnson_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
+        down2 = setup("/pet/johnson_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
+        right1 = setup("/pet/johnson_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
+        right2 = setup("/pet/johnson_walk_left_1", (int) (gamePanel.tileSize / 1), (int) (gamePanel.tileSize / 1));
     }
 
     public void setDialogue() {
         dialogues[0][0] = "Woof, woof!";
+        dialogues[1][0] = "Woof.";
+        dialogues[2][0] = "...";
+        dialogues[3][0] = "Itu sudah cukup.";
+        dialogues[3][1] = "Jangan memintaku menggonggong lagi.";
     }
 
     public void setAction() {

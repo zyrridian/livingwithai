@@ -42,10 +42,32 @@ public class NPC_Musician extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0][0] = "Aku sedang memikirkan konsep untuk\nkonser musikku 2 bulan lagi.";
+        dialogues[0][0] = "Aku sedang memikirkan konsep untuk konser\nmusikku 2 bulan lagi.";
         dialogues[0][1] = "Apa kau ingin datang?";
         dialogues[0][2] = "Tenang saja!";
         dialogues[0][3] = "Aku akan memberikanmu tiket gratis.";
+        dialogues[1][0] = "Hey, apa kau paham mengenai AI?";
+        dialogues[1][1] = "Aku tidak begitu mengerti, tapi gadis seniman\nitu memberitahuku mengenai hal ini.";
+        dialogues[1][2] = "Dia menunjukkan padaku sebuah lagu, yang\nsepenuhnya dibuat oleh AI.";
+        dialogues[1][3] = "Lagu itu memiliki vokal, bahkan aransemen musik\nyang beragam.";
+        dialogues[1][4] = "Bahkan suara nyanyiannya bisa kita ganti\nmenggunakan suara tokoh terkenal.";
+        dialogues[1][5] = "Walaupun belum sempurna, namun itu cukup\nmenyenangkan untuk hiburan.";
+        dialogues[1][6] = "Aku akan menggunakan model AI suara presiden\nkita untuk menyanyikan laguku, dan menunjukkannya kepada Librarian! Hahaha.";
+        dialogues[1][7] = "Dia pasti tertipu dan menganggap itu nyata.";
+        dialogues[2][0] = "Kemarin aku menggunakan AI mengoptimalkan\nkualitas suara dan mixing.";
+        dialogues[2][1] = "Tidak sempurna, namun cukup membantu untuk\nmenghemat waktu.";
+        dialogues[2][2] = "Dan terkadang, aku cukup ceroboh dan sering\nmelupakan detail kecil.";
+        dialogues[2][3] = "AI membantuku menemukan kesalahan tersebut.";
+        dialogues[3][0] = "Dari yang aku perhatikan, gadis seniman itu\ncukup skeptis bahwa AI dapat menggantikan pekerjaannya.";
+        dialogues[3][1] = "Tapi bagiku sebagai seorang musisi, aku cukup\npercaya diri.";
+        dialogues[3][2] = "AI tidak akan menggantikan pekerjaanku.";
+        dialogues[3][3] = "Bayangkan saja orang lebih memilih menonton\nkonser musik AI daripada konser musikku.";
+        dialogues[3][4] = "Itu adalah hal yang mustahil, dan sangat konyol\njika benar-benar terjadi.";
+        dialogues[4][0] = "Hmm?";
+        dialogues[4][1] = "Apa maksudmu?";
+        dialogues[4][2] = "Jangan mudah percaya perkataan gadis seniman?";
+        dialogues[4][3] = "Kenapa? Kelihatannya dia cukup bisa dipercaya.";
+        dialogues[4][4] = "Apa mungkin aku tidak menyadari sesuatu?";
     }
 
     public void setAction() {
@@ -91,8 +113,8 @@ public class NPC_Musician extends Entity {
         startDialogue(this, dialogueSet);
         dialogueSet++;
         if (dialogues[dialogueSet][0] == null) {
-            // dialogueSet = 0; // Dialogue will be replayed again
-            dialogueSet--; // Dialogue will be stuck in the end state
+            dialogueSet = 0; // Dialogue will be replayed again
+            // dialogueSet--; // Dialogue will be stuck in the end state
         }
     }
     

@@ -43,10 +43,26 @@ public class NPC_Librarian extends Entity {
 
     public void setDialogue() {
         dialogues[0][0] = "Selamat datang di Perpustakaan Kota. Apa yang\nbisa saya bantu?";
-        dialogues[1][0] = "Hm? Jadi kamu mencari 'Buku Inspirasi Teknologi'\ndan 'Pena Kreativitas'?";
-        dialogues[1][1] = "Barang-barang itu tersebar di seluruh\nperpustakaan.";
-        dialogues[1][2] = "Tapi aku lupa dimana menyimpannya.";
-        dialogues[2][0] = "Apa kamu bisa mencarinya sendiri?";
+        dialogues[0][1] = "Hm? Jadi kamu mencari 'Buku Inspirasi Teknologi'\ndan 'Pena Kreativitas'?";
+        dialogues[0][2] = "Barang-barang itu tersebar di seluruh\nperpustakaan.";
+        dialogues[0][3] = "Tapi aku lupa dimana menyimpannya.";
+        dialogues[0][4] = "Apa kamu bisa mencarinya sendiri?";
+        dialogues[0][5] = "...";
+        dialogues[0][6] = "...";
+        dialogues[0][7] = "Kenapa kamu masih berdiri di sana?";
+        dialogues[0][8] = "Ah! Jadi kamu tidak sedang mencari pena\nkreativitas dan juga satu barang lainnya yang\naku sangat malas menyebutkan karena namanya\nterlalu panjang namun sekarang aku terlalu-";
+        dialogues[0][9] = "...";
+        dialogues[0][10] = "Maaf jika aku mengganggumu.";
+        dialogues[1][0] = "AI?";
+        dialogues[1][1] = "Tentu saja aku tahu, aku tidak bodoh.";
+        dialogues[1][2] = "Itu sebabnya aku bekerja di perpustakaan-";
+        dialogues[1][3] = "...";
+        dialogues[1][4] = "Maaf jika kata-kataku tadi memiliki kesan\nnegatif.";
+        dialogues[1][5] = "Aku tidak bermaksud seperti itu.";
+        dialogues[2][0] = "Apa kau tahu? Profesor sedang mengembangkan\nsebuah komputer kuantum yang dapat bekerja\njauh lebih cepat daripada komputer\nkonvensional.";
+        dialogues[2][1] = "Komputer ini menggunakan konsep mekanika\nkuantum, dimana partikel bisa berada di dua\ntempat sekaligus.";
+        dialogues[2][2] = "Jika hal ini berhasil, maka teknologi AI akan\nsemakin berkembang.";
+        dialogues[2][3] = "Dan dunia medis pun akan terkena dampaknya,\nmembawa perubahan besar dalam diagnosis dan\nperawatan.";
     }
 
     public void setAction() {
@@ -92,8 +108,8 @@ public class NPC_Librarian extends Entity {
         startDialogue(this, dialogueSet);
         dialogueSet++;
         if (dialogues[dialogueSet][0] == null) {
-            // dialogueSet = 0; // Dialogue will be replayed again
-            dialogueSet--; // Dialogue will be stuck in the end state
+            dialogueSet = 0; // Dialogue will be replayed again
+            // dialogueSet--; // Dialogue will be stuck in the end state
         }
     }
     

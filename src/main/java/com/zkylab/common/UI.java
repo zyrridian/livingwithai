@@ -202,14 +202,6 @@ public class UI {
             i++;
             x += manaStartX;
         }
-
-        g2.setColor(Color.white);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
-        String text = "Life: " + gamePanel.player.life;
-        x = getXforCenteredText(text);
-        y = gamePanel.tileSize * 3;
-        g2.drawString(text, x, y);
-
     }
 
     public void drawMonsterLife() {

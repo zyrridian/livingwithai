@@ -9,6 +9,7 @@ import com.zkylab.monster.MON_RobotBrown;
 import com.zkylab.monster.MON_RobotWhite;
 import com.zkylab.monster.MON_RobotYellow;
 import com.zkylab.pet.PET_Dog;
+import com.zkylab.pet.PET_Johnson;
 import com.zkylab.tile_interactive.IT_StairLeft;
 import com.zkylab.tile_interactive.IT_StairRight;
 
@@ -50,6 +51,14 @@ public class AssetSetter {
         gamePanel.npc[mapNumber][i] = new NPC_Professor(gamePanel);
         gamePanel.npc[mapNumber][i].worldX = gamePanel.tileSize * 27;
         gamePanel.npc[mapNumber][i].worldY = gamePanel.tileSize * 26;
+        i++;
+
+        mapNumber = 6;
+        i = 0;
+
+        gamePanel.npc[mapNumber][i] = new PET_Johnson(gamePanel);
+        gamePanel.npc[mapNumber][i].worldX = gamePanel.tileSize * 26;
+        gamePanel.npc[mapNumber][i].worldY = gamePanel.tileSize * 25;
         i++;
 
         mapNumber = 7;

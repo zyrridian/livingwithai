@@ -13,6 +13,7 @@ public class EventHandler {
     EventRect eventRect[][][]; // 3D array for event rectangles
     public static Entity eventMaster; // Entity responsible for dialogues and other events
     int previousEventX, previousEventY; // Previous event coordinates
+    public boolean monsterMode = false;
 
     // Flags and temporary variables
     boolean canTouchEvent = true;
@@ -69,14 +70,42 @@ public class EventHandler {
         eventMaster.dialogues[1][0] = "You drink the water.\nYour life has been recovered.\n(The progress has been saved)";
         eventMaster.dialogues[1][1] = "Damn, that's a good water.";
 
-        eventMaster.dialogues[2][0] = "Pintu terkunci.";
+        // Ruang Utama
+        eventMaster.dialogues[2][0] = "Pintunya terkunci.";
+        eventMaster.dialogues[2][1] = "Ada sesuatu yang menghalangi.";
         eventMaster.dialogues[3][0] = "Sebuah tanaman.";
+        eventMaster.dialogues[3][1] = "Terbuat dari plastik.";
         eventMaster.dialogues[4][0] = "Tidak ada acara menarik di televisi.";
         eventMaster.dialogues[4][1] = "Membosankan.";
         eventMaster.dialogues[5][0] = "Sofa yang nyaman.";
 
-        eventMaster.dialogues[6][0] = "Area ini berbahaya.";
-        eventMaster.dialogues[6][1] = "Jangan mendekat.";
+        // Dapur
+        eventMaster.dialogues[6][0] = "Sebuah meja dengan noda yang tidak bisa dihapus.";
+        eventMaster.dialogues[7][0] = "Kulkas ini berdengung dengan nada rendah.";
+        eventMaster.dialogues[7][1] = "Isinya hanya air.";
+        eventMaster.dialogues[8][0] = "Oven tua ini masih panas.";
+        eventMaster.dialogues[8][1] = "Meski tidak ada yang menggunakannya.";
+        eventMaster.dialogues[9][0] = "Airnya tidak berhenti menetes.";
+        eventMaster.dialogues[9][1] = "Kamu mencoba memperbaikinya.";
+        eventMaster.dialogues[9][2] = "...";
+        eventMaster.dialogues[9][3] = "Kerja bagus.";
+        eventMaster.dialogues[9][4] = "Sekarang keran airnya patah.";
+        eventMaster.dialogues[9][5] = "Tapi...";
+        eventMaster.dialogues[9][6] = "kenapa airnya berhenti mengalir?";
+        eventMaster.dialogues[10][0] = "Kompor tua dengan tungku-tungku yang menghitam.";
+
+        // Main Town
+        eventMaster.dialogues[11][0] = "Pohon hijau yang menyejukkan udara.";
+        eventMaster.dialogues[12][0] = "Apakah ini kolam renang?";
+        eventMaster.dialogues[12][1] = "Atau sumber air minum?";
+
+        eventMaster.dialogues[13][0] = "Kamu menemukan sebuah air mancur.";
+        eventMaster.dialogues[13][1] = "Airnya sangat segar.";
+        eventMaster.dialogues[13][2] = "Hingga membuatmu tidak sengaja meminumnya.";
+
+        // eventMaster.dialogues[6][0] = "Area ini berbahaya.";
+        // eventMaster.dialogues[6][1] = "Jangan mendekat.";
+
     }
 
     /**
@@ -188,17 +217,17 @@ public class EventHandler {
 
         // Locked door
         else if (hit(0, 26, 19, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 2);
+            interactObject(2);
         else if (hit(0, 33, 19, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 2);
+            interactObject(2);
         else if (hit(1, 29, 29, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 2);
+            interactObject(2);
         else if (hit(2, 19, 27, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 2);
+            interactObject(2);
         else if (hit(2, 25, 27, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 2);
+            interactObject(2);
         else if (hit(3, 19, 29, "up"))
-            interactObject(GamePanel.DIALOGUE_STATE, 2);
+            interactObject(2);
 
         else if (hit(4, 33, 26, "right") || hit(4, 33, 27, "right") || hit(4, 33, 28, "right"))
             autoDialog(4, 33, 26, GamePanel.DIALOGUE_STATE, 6);
@@ -208,6 +237,48 @@ public class EventHandler {
             openTheDoor(8, 28, 42, GamePanel.INDOOR_AREA); // Teleport kota 1 ke studio 1
         else if (hit(8, 28, 42, "down"))
             teleport(0, 23, 19, GamePanel.OUTSIDE_AREA); // Teleport studio 1 ke kota 1
+
+        // ========== KITCHEN EVENTS ========== //
+        else if (hit(6, 18, 24, "up"))
+            interactObject(6);
+        else if (hit(6, 19, 24, "up"))
+            interactObject(7);
+        else if (hit(6, 20, 24, "up"))
+            interactObject(8);
+        else if (hit(6, 21, 24, "up"))
+            interactObject(9);
+        else if (hit(6, 22, 24, "up"))
+            interactObject(10);
+
+        // ========== LIVING ROOM EVENTS ========== //
+        else if (hit(5, 32, 24, "up") || hit(5, 27, 24, "up")) // pintu
+            interactObject(2);
+        else if (hit(5, 33, 24, "right") || hit(5, 24, 24, "left")) // tanaman
+            interactObject(3);
+        else if (hit(5, 20, 25, "up") || hit(5, 21, 25, "up") || hit(5, 25, 25, "up")) // tv
+            interactObject(4);
+        else if (hit(5, 20, 25, "left") || hit(5, 20, 26, "left") || hit(5, 20, 27, "left") || hit(5, 19, 28, "left"))
+            interactObject(5);
+
+        // ========== MAIN TOWN EVENTS ========== //
+        else if (hit(0, 11, 19, "up") || hit(0, 12, 19, "up") || hit(0, 13, 19, "up") || hit(0, 14, 19, "up")
+                || hit(0, 15, 19, "up")) // pohon
+            interactObject(11);
+        else if (hit(0, 11, 27, "up") || hit(0, 12, 27, "up") || hit(0, 13, 27, "up") || hit(0, 11, 30, "down")
+                || hit(0, 12, 30, "down") || hit(0, 13, 30, "down") || hit(0, 14, 21, "left") || hit(0, 14, 22, "left")
+                || hit(0, 14, 23, "left") || hit(0, 14, 24, "left") || hit(0, 14, 25, "left") || hit(0, 14, 26, "left")) // kolam
+            interactObject(12);
+        else if (hit(1, 19, 22, "down") || hit(1, 20, 22, "down") || hit(1, 22, 22, "down") || hit(1, 23, 22, "down")
+                || hit(1, 19, 25, "down") || hit(1, 20, 25, "down") || hit(1, 22, 25, "down") || hit(1, 23, 25, "down")
+                || hit(1, 19, 25, "up") || hit(1, 20, 25, "up") || hit(1, 22, 25, "up") || hit(1, 23, 25, "up")
+                || hit(1, 19, 28, "up") || hit(1, 20, 28, "up") || hit(1, 22, 28, "up") || hit(1, 23, 28, "up")
+                || hit(1, 18, 23, "right") || hit(1, 18, 24, "right") || hit(1, 18, 26, "right")
+                || hit(1, 18, 27, "right")
+                || hit(1, 21, 23, "right") || hit(1, 21, 24, "right") || hit(1, 21, 26, "right")
+                || hit(1, 21, 27, "right")
+                || hit(1, 21, 23, "left") || hit(1, 21, 24, "left") || hit(1, 21, 26, "left") || hit(1, 21, 27, "left")
+                || hit(1, 24, 23, "left") || hit(1, 24, 24, "left") || hit(1, 24, 26, "left") || hit(1, 24, 27, "left"))
+            interactObject(13); // air mancur kota 2
 
     }
 
@@ -272,9 +343,9 @@ public class EventHandler {
      * @param gameState The game state to transition to.
      * @param dialog    The dialogue index to display.
      */
-    public void interactObject(int gameState, int dialog) {
+    public void interactObject(int dialog) {
         if (gamePanel.keyHandler.enterPressed) {
-            gamePanel.gameState = gameState;
+            gamePanel.gameState = GamePanel.DIALOGUE_STATE;
             gamePanel.player.attackCanceled = true;
             gamePanel.playSoundEffect(12);
             eventMaster.startDialogue(eventMaster, dialog);
