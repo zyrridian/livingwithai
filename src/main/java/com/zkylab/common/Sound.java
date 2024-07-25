@@ -1,5 +1,7 @@
 package com.zkylab.common;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
@@ -40,20 +42,40 @@ public class Sound {
         soundURL[18] = getClass().getResource("/sounds/speak.wav");
         soundURL[19] = getClass().getResource("/sounds/chipwall.wav");
         soundURL[20] = getClass().getResource("/sounds/dooropen.wav");
-        soundURL[21] = getClass().getResource("/sounds/BossBattle.wav");
+        // soundURL[21] = getClass().getResource("/sounds/BossBattle.wav");
         soundURL[22] = getClass().getResource("/sounds/MainTheme.wav");
-        soundURL[23] = getClass().getResource("/sounds/Credit.wav");
+        // soundURL[23] = getClass().getResource("/sounds/Credit.wav");
     }
 
     public void setFile(int i) {
         try {
-            AudioInputStream audio = AudioSystem.getAudioInputStream(soundURL[i]);
-            clip = AudioSystem.getClip();
-            clip.open(audio);
-            floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            checkVolume();
+            if (soundURL[i].toString().endsWith(".wav")) {
+                AudioInputStream audio = AudioSystem.getAudioInputStream(soundURL[i]);
+                clip = AudioSystem.getClip();
+                clip.open(audio);
+                floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                checkVolume();
+            } else if (soundURL[i].toString().endsWith(".ogg")) {
+                // TODO: Add JOrbis and JLayer to your project:
+                // Ogg file handling
+                // InputStream in = soundURL[i].openStream();
+                // Bitstream bitstream = new Bitstream(new BufferedInputStream(in));
+                // AdvancedPlayer player = new AdvancedPlayer(bitstream);
+                // player.setPlayBackListener(new PlaybackListener() {
+                //     public void playbackFinished(PlaybackEvent evt) {
+                //         // Handle end of playback
+                //     }
+                // });
+                // new Thread(() -> {
+                //     try {
+                //         player.play();
+                //     } catch (JavaLayerException e) {
+                //         e.printStackTrace();
+                //     }
+                // }).start();
+            }
         } catch (Exception e) {
-            
+            e.printStackTrace();
         }
     }
 

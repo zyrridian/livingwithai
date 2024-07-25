@@ -390,9 +390,11 @@ public class UI {
             height = gamePanel.tileSize * 1;
             drawSubWindow(x, y, width, height);
 
-            // Set Name box Text
+            // Set Name box Text (centered)
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
-            g2.drawString(npc.name, x + (gamePanel.tileSize - 32), y + (gamePanel.tileSize - 14));
+            int length = (int) g2.getFontMetrics().getStringBounds(npc.name, g2).getWidth();
+            g2.drawString(npc.name, x + (width / 2 - length / 2), y + (gamePanel.tileSize - 14));
+            // g2.drawString(npc.name, x + (gamePanel.tileSize - 32), y + (gamePanel.tileSize - 14));
 
             // Dialog box
             x = x + width;
@@ -448,6 +450,30 @@ public class UI {
         for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, x, y);
             y += 40;
+        }
+    }
+
+    public void drawChoiceScreen() {
+        int x = gamePanel.tileSize * 2;
+        int y = gamePanel.screenHeight - (gamePanel.tileSize * 8) - gamePanel.tileSize / 2;
+        int width = gamePanel.tileSize * 6;
+        int height = gamePanel.tileSize * 4;
+        drawSubWindow(x, y, width, height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
+        g2.drawString("Terima Quest?", x + (gamePanel.tileSize - 16), y + gamePanel.tileSize + 16);
+
+        y += gamePanel.tileSize - 10;
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
+        g2.drawString("Ya", x + (gamePanel.tileSize - 16) + gamePanel.tileSize / 2, y + gamePanel.tileSize + 28);
+        if (commandNumber == 0) {
+            g2.drawString(">", x + (gamePanel.tileSize - 16), y + gamePanel.tileSize + 28);
+        }
+
+        y += gamePanel.tileSize - 10;
+        g2.drawString("Tidak", x + (gamePanel.tileSize - 16) + gamePanel.tileSize / 2, y + gamePanel.tileSize + 30);
+        if (commandNumber == 1) {
+            g2.drawString(">", x + (gamePanel.tileSize - 16), y + gamePanel.tileSize + 30);
         }
     }
 

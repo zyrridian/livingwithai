@@ -42,8 +42,11 @@ public class NPC_Librarian extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0][0] = "Selamat datang di perpustakaan.";
-        dialogues[0][1] = "Silahkan baca buku yang kamu inginkan.";
+        dialogues[0][0] = "Selamat datang di Perpustakaan Kota. Apa yang\nbisa saya bantu?";
+        dialogues[1][0] = "Hm? Jadi kamu mencari 'Buku Inspirasi Teknologi'\ndan 'Pena Kreativitas'?";
+        dialogues[1][1] = "Barang-barang itu tersebar di seluruh\nperpustakaan.";
+        dialogues[1][2] = "Tapi aku lupa dimana menyimpannya.";
+        dialogues[2][0] = "Apa kamu bisa mencarinya sendiri?";
     }
 
     public void setAction() {

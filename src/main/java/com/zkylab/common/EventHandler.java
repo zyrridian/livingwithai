@@ -11,7 +11,7 @@ public class EventHandler {
 
     GamePanel gamePanel; // Game panel reference
     EventRect eventRect[][][]; // 3D array for event rectangles
-    Entity eventMaster; // Entity responsible for dialogues and other events
+    public static Entity eventMaster; // Entity responsible for dialogues and other events
     int previousEventX, previousEventY; // Previous event coordinates
 
     // Flags and temporary variables
@@ -62,7 +62,10 @@ public class EventHandler {
      * Sets default dialogues for various events.
      */
     public void setDialogue() {
-        eventMaster.dialogues[0][0] = "You fall into a pit!";
+        eventMaster.dialogues[0][0] = "Ada orang yang terlihat kebingungan.";
+        eventMaster.dialogues[0][1] = "Bicaralah padanya.";
+        eventMaster.dialogues[0][2] = "Atau abaikan saja.";
+
         eventMaster.dialogues[1][0] = "You drink the water.\nYour life has been recovered.\n(The progress has been saved)";
         eventMaster.dialogues[1][1] = "Damn, that's a good water.";
 

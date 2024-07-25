@@ -4,7 +4,7 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import com.zkylab.entity.NPC_OldMan;
+import com.zkylab.entity.Entity;
 import com.zkylab.entity.PlayerDummy;
 import com.zkylab.monster.MON_SkeletonLord;
 import com.zkylab.object.OBJ_BlueHeart;
@@ -13,6 +13,8 @@ import com.zkylab.object.OBJ_DoorIron;
 public class CutsceneManager {
     
     GamePanel gamePanel;
+    EventHandler eventHandler;
+    public static Entity cutsceneMaster; // Entity responsible for dialogues and other events
     Graphics2D g2;
     public int sceneNumber;
     public int scenePhase;
@@ -29,12 +31,20 @@ public class CutsceneManager {
 
     public CutsceneManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        cutsceneMaster = new Entity(gamePanel);
         endCredit = "Program/Desain/Music/Skenario"
                   + "Iqbal D.\n"
                   + "Renaldy L.\n"
                   + "Rezky A.\n"
                   + "\n\n\n\n\n\n\n\n\n\n\n\n\n"
                   + "Thank you for playing!";
+        setDialogue();
+    }
+
+    public void setDialogue() {
+        cutsceneMaster.dialogues[0][0] = "Ada orang yang terlihat kebingungan.";
+        cutsceneMaster.dialogues[0][1] = "Bicaralah padanya.";
+        cutsceneMaster.dialogues[0][2] = "Atau abaikan saja.";
     }
 
     public void draw(Graphics2D g2) {
@@ -48,8 +58,6 @@ public class CutsceneManager {
     }
 
     public void scene_opening() {
-
-        // Shut the iron door
         if (scenePhase == 0) {
             // Search a vacant slot for the dummy
             for (int i = 0; i < gamePanel.npc[1].length; i++) {
@@ -68,32 +76,25 @@ public class CutsceneManager {
 
         // Moving the camera upward and use dummy player (above this code) image because the current player image is invincible
         if (scenePhase == 1) {
-            gamePanel.player.worldX += 2;
+            gamePanel.player.worldX += 1;
+            gamePanel.player.worldY += 1;
             if (gamePanel.player.worldX > gamePanel.tileSize * 15) {
                 scenePhase++;
             }
         }
 
+        // Show dialogues
         if (scenePhase == 2) {
-            for (int i = 0; i < gamePanel.npc[1].length; i++) {
-                if (gamePanel.npc[gamePanel.currentMap][i] != null &&
-                    gamePanel.npc[gamePanel.currentMap][i].name.equals(NPC_OldMan.npcName)
-                ) {
-                    gamePanel.ui.npc = gamePanel.npc[gamePanel.currentMap][i];
-                    scenePhase++;
-                    break;
-                }
-            }
+            gamePanel.ui.npc = new PlayerDummy(gamePanel);
+            scenePhase++;
         }
 
-        // Boss speak
         if (scenePhase == 3) {
             gamePanel.ui.drawDialogueScreen();
         }
 
         // Return camera to the player
         if (scenePhase == 4) {
-            
             // Remove the dummy
             for (int i = 0; i < gamePanel.npc[1].length; i++) {
                 if (gamePanel.npc[gamePanel.currentMap][i] != null &&
@@ -114,16 +115,23 @@ public class CutsceneManager {
             sceneNumber = NA;
             scenePhase = 0;
             gamePanel.gameState = GamePanel.PLAY_STATE;
-
-            // Change the music
-            // gamePanel.stopMusic();
-            gamePanel.playMusic(0);
-
+            gamePanel.playMusic(22);
         }
-
-       
     }
 
+    // public void scene_opening() {
+    //     if (scenePhase == 2) {
+    //         for (int i = 0; i < gamePanel.npc[1].length; i++) {
+    //             if (gamePanel.npc[gamePanel.currentMap][i] != null &&
+    //                 gamePanel.npc[gamePanel.currentMap][i].name.equals(NPC_OldMan.npcName)
+    //             ) {
+    //                 gamePanel.ui.npc = gamePanel.npc[gamePanel.currentMap][i];
+    //                 scenePhase++;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    // }
 
     public void scene_skeletonLord() {
 

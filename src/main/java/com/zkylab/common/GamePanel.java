@@ -223,8 +223,31 @@ public class GamePanel extends JPanel implements Runnable {
             updateInteractiveTiles();
             eManager.update(); // Upload lightning
         }
-        if (gameState == PAUSE_STATE) {
-            // nothing
+        if (gameState == CUTSCENE_STATE) {
+            // NPC
+            for (int i = 0; i < npc[1].length; i++) {
+                if (npc[currentMap][i] != null) {
+                    npc[currentMap][i].setAction();
+                    npc[currentMap][i].checkCollision();
+                    // If collision is false, player can move
+                    if (!npc[currentMap][i].collisionOn) {
+                        switch (npc[currentMap][i].direction) {
+                            case "up":
+                                npc[currentMap][i].worldY -= npc[currentMap][i].speed;
+                                break;
+                            case "down":
+                                npc[currentMap][i].worldY += npc[currentMap][i].speed;
+                                break;
+                            case "left":
+                                npc[currentMap][i].worldX -= npc[currentMap][i].speed;
+                                break;
+                            case "right":
+                                npc[currentMap][i].worldX += npc[currentMap][i].speed;
+                                break;
+                        }
+                    }
+                }
+            }
         }
     }
 
