@@ -44,6 +44,9 @@ public class Sound {
         soundURL[20] = getClass().getResource("/sounds/dooropen.wav");
         // soundURL[21] = getClass().getResource("/sounds/BossBattle.wav");
         soundURL[22] = getClass().getResource("/sounds/MainTheme.wav");
+        soundURL[23] = getClass().getResource("/sounds/MainThemeGood.wav");
+        soundURL[24] = getClass().getResource("/sounds/MainThemeNeutral.wav");
+        soundURL[25] = getClass().getResource("/sounds/dead.wav");
         // soundURL[23] = getClass().getResource("/sounds/Credit.wav");
     }
 

@@ -9,21 +9,21 @@ import com.zkylab.object.OBJ_Heart;
 import com.zkylab.object.OBJ_Mana_Crystal;
 import com.zkylab.object.OBJ_Rock;
 
-public class MON_RobotBrown extends Entity {
+public class MON_RobotCube extends Entity {
 
     GamePanel gamePanel;
 
-    public MON_RobotBrown(GamePanel gamePanel) {
+    public MON_RobotCube(GamePanel gamePanel) {
 
         super(gamePanel);
 
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Robot Brown";
-        defaultSpeed = 2;
+        name = "Robot Cube";
+        defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 20;
+        maxLife = 5;
         life = maxLife;
         attack = 5;
         defense = 0;
@@ -42,14 +42,14 @@ public class MON_RobotBrown extends Entity {
     }
 
     public void getImage() {
-        up1 = setup("/monster/robot_brown_down_1", gamePanel.tileSize, gamePanel.tileSize);
-        up2 = setup("/monster/robot_brown_down_2", gamePanel.tileSize, gamePanel.tileSize);
-        down1 = setup("/monster/robot_brown_down_1", gamePanel.tileSize, gamePanel.tileSize);
-        down2 = setup("/monster/robot_brown_down_2", gamePanel.tileSize, gamePanel.tileSize);
-        left1 = setup("/monster/robot_brown_down_1", gamePanel.tileSize, gamePanel.tileSize);
-        left2 = setup("/monster/robot_brown_down_2", gamePanel.tileSize, gamePanel.tileSize);
-        right1 = setup("/monster/robot_brown_down_1", gamePanel.tileSize, gamePanel.tileSize);
-        right2 = setup("/monster/robot_brown_down_2", gamePanel.tileSize, gamePanel.tileSize);
+        up1 = setup("/monster/robot_cube_down_1", gamePanel.tileSize, gamePanel.tileSize);
+        up2 = setup("/monster/robot_cube_down_2", gamePanel.tileSize, gamePanel.tileSize);
+        down1 = setup("/monster/robot_cube_down_1", gamePanel.tileSize, gamePanel.tileSize);
+        down2 = setup("/monster/robot_cube_down_2", gamePanel.tileSize, gamePanel.tileSize);
+        left1 = setup("/monster/robot_cube_down_1", gamePanel.tileSize, gamePanel.tileSize);
+        left2 = setup("/monster/robot_cube_down_2", gamePanel.tileSize, gamePanel.tileSize);
+        right1 = setup("/monster/robot_cube_down_1", gamePanel.tileSize, gamePanel.tileSize);
+        right2 = setup("/monster/robot_cube_down_2", gamePanel.tileSize, gamePanel.tileSize);
     }
 
     public void setAction() { // Monster simple ai algorithm
@@ -61,9 +61,6 @@ public class MON_RobotBrown extends Entity {
 
             // Search the direction to go
             searchPath(getGoalCol(gamePanel.player), getGoalRow(gamePanel.player));
-
-            // Check if it shoots a projectile
-            checkShootOrNot(200, 30);
             
         } else {
 
@@ -71,7 +68,7 @@ public class MON_RobotBrown extends Entity {
             checkStartChasingOrNot(gamePanel.player, 5, 100);
 
             // Get a random direction
-            getRandomDirection(120);
+            getRandomDirection(60);
 
         }
 

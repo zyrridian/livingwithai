@@ -27,20 +27,21 @@ public class UI {
     public boolean gameFinished = false;
     public String currentDialogue = "";
     public int commandNumber = 0;
-    public int titleScreenState = 1; // sub class of title, for example: menu, options, opening, etc.
+    public int titleScreenState = 0; // sub class of title, for example: menu, options, opening, etc.
     public int playerSlotCol = 0;
     public int playerSlotRow = 0;
     public int npcSlotCol = 0;
     public int npcSlotRow = 0;
     int subState = 0;
     int counter = 0;
+    int titleScreenCounter = 0;
     public Entity npc;
     int charIndex = 0;
     String combinedText = "";
 
     public UI(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        
+
         try {
             InputStream inputStream = getClass().getResourceAsStream("/font/maru-monica.ttf");
             maruMonica = Font.createFont(Font.TRUETYPE_FONT, inputStream);
@@ -61,7 +62,7 @@ public class UI {
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_blank = heart.image3;
-        
+
         // Create mana object in HUD
         Entity crystal = new OBJ_Mana_Crystal(gamePanel);
         crystal_full = crystal.image;
@@ -223,16 +224,16 @@ public class UI {
 
                     g2.setColor(new Color(255, 0, 30));
                     g2.fillRect(monster.getScreenX(), monster.getScreenY() - 15, (int) hpBarValue, 10);
-                    
+
                     monster.hpBarCounter++;
 
                     if (monster.hpBarCounter > 600) {
                         monster.hpBarCounter = 0;
                         monster.hpBarOn = false;
                     }
-                    
+
                 } else if (monster.boss) {
-                    
+
                     double oneScale = (double) gamePanel.tileSize * 8 / monster.maxLife;
                     double hpBarValue = oneScale * monster.life;
 
@@ -253,8 +254,6 @@ public class UI {
                 }
             }
         }
-        
-
     }
 
     public void drawMessage() {
@@ -290,8 +289,32 @@ public class UI {
     public void drawTitleScreen() {
 
         if (titleScreenState == 0) {
-            
 
+            titleScreenCounter++;
+
+            if (titleScreenCounter < 120) {
+                g2.setColor(new Color(0, 0, 0));
+                g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+
+                // Title Name
+                g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
+                String text = "Mandala Tech";
+                int x = getXforCenteredText(text);
+                int y = gamePanel.tileSize * 6 + gamePanel.tileSize / 2;
+
+                // Shadow
+                g2.setColor(Color.gray);
+                g2.drawString(text, x + 3, y + 3);
+
+                // Main Color
+                g2.setColor(Color.white);
+                g2.drawString(text, x, y);
+            }
+
+            if (titleScreenCounter >= 120) {
+                titleScreenState++;
+                titleScreenCounter = 0;
+            }
 
         } else if (titleScreenState == 1) { // MENU
 
@@ -347,7 +370,7 @@ public class UI {
         }
 
     }
-    
+
     public void drawPauseScreen() {
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
@@ -361,7 +384,7 @@ public class UI {
 
     public void drawDialogueScreen() {
 
-        int x; 
+        int x;
         int y;
         int width;
         int height;
@@ -472,7 +495,7 @@ public class UI {
     public void drawCharacterScreen() {
         // Create a Frame
         final int frameX = gamePanel.tileSize * 2;
-        final int frameY = gamePanel.tileSize; 
+        final int frameY = gamePanel.tileSize;
         final int frameWidth = gamePanel.tileSize * 5;
         final int frameHeight = gamePanel.tileSize * 10;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
@@ -608,7 +631,7 @@ public class UI {
                 g2.setColor(new Color(240, 190, 90));
                 g2.fillRoundRect(slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, 10, 10);
             }
-            
+
             g2.drawImage(entity.inventory.get(i).down1, slotX, slotY, null);
 
             // Display stackable item amount
@@ -640,7 +663,7 @@ public class UI {
 
         // Cursor
         if (cursor) {
-        
+
             int cursorX = slotXstart + (slotSize * slotCol);
             int cursorY = slotYstart + (slotSize * slotRow);
             int cursorWidth = gamePanel.tileSize;
@@ -666,7 +689,7 @@ public class UI {
 
             if (itemIndex < entity.inventory.size()) {
                 drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
-                for (String line: entity.inventory.get(itemIndex).description.split("\n")) {
+                for (String line : entity.inventory.get(itemIndex).description.split("\n")) {
                     g2.drawString(line, textX, textY);
                     textY += 32;
                 }
@@ -779,7 +802,7 @@ public class UI {
         textY += gamePanel.tileSize;
         g2.drawString("SFX", textX, textY);
         if (commandNumber == 2) g2.drawString(">", textX - 25, textY);
-        
+
         // Control
         textY += gamePanel.tileSize;
         g2.drawString("Control", textX, textY);
@@ -845,7 +868,7 @@ public class UI {
 
         currentDialogue = "The change will take\neffect after restarting\nthe game.";
 
-        for (String line: currentDialogue.split("\n")) {
+        for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
             textY += 40;
         }
@@ -863,7 +886,7 @@ public class UI {
     }
 
     public void options_control(int frameX, int frameY) {
-        
+
         int textX;
         int textY;
 
@@ -914,7 +937,7 @@ public class UI {
 
         currentDialogue = "Quit the game and\nreturn to the title\nscreen?";
 
-        for (String line: currentDialogue.split("\n")) {
+        for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
             textY += 40;
         }
@@ -973,9 +996,9 @@ public class UI {
         }
         gamePanel.keyHandler.enterPressed = false;
     }
-    
+
     public void trade_select() {
-        npc.dialogueSet = 0;
+        npc.dialogueSet = 4;
         drawDialogueScreen();
 
         // Draw window
@@ -989,7 +1012,7 @@ public class UI {
         x += gamePanel.tileSize;
         y += gamePanel.tileSize;
 
-        g2.drawString("Buy", x, y);
+        g2.drawString("Beli", x, y);
         if (commandNumber == 0) {
             g2.drawString(">", x - 24, y);
             if (gamePanel.keyHandler.enterPressed) {
@@ -998,7 +1021,7 @@ public class UI {
         }
         y += gamePanel.tileSize;
 
-        g2.drawString("Sell", x, y); 
+        g2.drawString("Jual", x, y);
         if (commandNumber == 1) {
             g2.drawString(">", x - 24, y);
             if (gamePanel.keyHandler.enterPressed) {
@@ -1006,18 +1029,16 @@ public class UI {
             }
         }
         y += gamePanel.tileSize;
-        
-        g2.drawString("Leave", x, y); 
+
+        g2.drawString("Keluar", x, y);
         if (commandNumber == 2) {
             g2.drawString(">", x - 24, y);
             if (gamePanel.keyHandler.enterPressed) {
                 commandNumber = 0;
-                npc.startDialogue(npc, 1);
+                npc.startDialogue(npc, 5);
             }
         }
         y += gamePanel.tileSize;
-
-
     }
 
     public void trade_buy() {
@@ -1034,7 +1055,7 @@ public class UI {
         int width = gamePanel.tileSize * 6;
         int height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
-        g2.drawString("[ESC] Back", x + 24, y + 60);
+        g2.drawString("[ESC] Kembali", x + 24, y + 60);
 
         // Draw player coin window
         x = gamePanel.tileSize * 12;
@@ -1042,7 +1063,7 @@ public class UI {
         width = gamePanel.tileSize * 6;
         height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
-        g2.drawString("Your Coin: " + gamePanel.player.coin, x + 24, y + 60);
+        g2.drawString("Jumlah Koinmu: " + gamePanel.player.coin, x + 24, y + 60);
 
         // Draw price window
         int itemIndex = getItemIndexOnSlot(npcSlotCol, npcSlotRow);
@@ -1063,13 +1084,13 @@ public class UI {
             if (gamePanel.keyHandler.enterPressed) {
                 if (npc.inventory.get(itemIndex).price > gamePanel.player.coin) { // Coin is not enough
                     subState = 0;
-                    npc.startDialogue(npc, 2);
+                    npc.startDialogue(npc, 6);
                 } else { // Coin is enough
                     if (gamePanel.player.canObtainItem(npc.inventory.get(itemIndex))) { // Item slot available
                         gamePanel.player.coin -= npc.inventory.get(itemIndex).price;
                     } else { // Item slot is full
                         subState = 0;
-                        npc.startDialogue(npc, 3);
+                        npc.startDialogue(npc, 7);
                     }
                 }
             }
@@ -1093,7 +1114,7 @@ public class UI {
         width = gamePanel.tileSize * 6;
         height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
-        g2.drawString("[ESC] Back", x + 24, y + 60);
+        g2.drawString("[ESC] Kembali", x + 24, y + 60);
 
         // Draw player coin window
         x = gamePanel.tileSize * 12;
@@ -1101,7 +1122,7 @@ public class UI {
         width = gamePanel.tileSize * 6;
         height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
-        g2.drawString("Your Coin: " + gamePanel.player.coin, x + 24, y + 60);
+        g2.drawString("Jumlah Koinmu: " + gamePanel.player.coin, x + 24, y + 60);
 
         // Draw price window
         int itemIndex = getItemIndexOnSlot(playerSlotCol, playerSlotRow);
@@ -1123,7 +1144,7 @@ public class UI {
                 if (gamePanel.player.inventory.get(itemIndex) == gamePanel.player.currentWeapon || gamePanel.player.inventory.get(itemIndex) == gamePanel.player.currentShield) {
                     commandNumber = 0;
                     subState = 0;
-                    npc.startDialogue(npc, 4);
+                    npc.startDialogue(npc, 8);
                 } else {
                     if (gamePanel.player.inventory.get(itemIndex).amount > 1) {
                         gamePanel.player.inventory.get(itemIndex).amount--;
@@ -1171,7 +1192,7 @@ public class UI {
         color = new Color(255, 255, 255);
         g2.setColor(color);
         g2.setStroke(new BasicStroke(5));
-        g2.drawRect(x + 5,  y + 5, width - 10, height - 10);
+        g2.drawRect(x + 5, y + 5, width - 10, height - 10);
     }
 
     public int getXforCenteredText(String text) {

@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 
     // World Settings
-    public final int maxMap = 10;
+    public final int maxMap = 20;
     public int currentMap = 0;
     public int maxWorldCol;
     public int maxWorldRow;
@@ -478,9 +478,9 @@ public class GamePanel extends JPanel implements Runnable {
             if (nextArea == OUTSIDE_AREA)
                 playMusic(22);
             if (nextArea == INDOOR_AREA)
-                playMusic(6);
+                playMusic(23);
             if (nextArea == DUNGEON_AREA)
-                playMusic(7);
+                playMusic(24);
             assetSetter.setNPC();
         }
         currentArea = nextArea;

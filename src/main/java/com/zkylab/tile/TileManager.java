@@ -68,16 +68,10 @@ public class TileManager {
         loadMap("/maps/dapur.txt", 6);
         loadMap("/maps/perpustakaan.txt", 7);
         loadMap("/maps/studio01.txt", 8);
-        // loadMap("/maps/worldmap.txt", 0);
-        // loadMap("/maps/map.txt", 0);
-        // loadMap("/maps/indoor01.txt", 1);
-        // loadMap("/maps/dungeon01.txt", 2);
-        // loadMap("/maps/dungeon02.txt", 3);
-        // loadMap("/maps/map02.txt", 4);
-        // loadMap("/maps/map03.txt", 5);
-        // loadMap("/maps/labirin.txt", 6);
-        // loadMap("/maps/utama.txt", 7);
         loadMap("/maps/perpustakaan.txt", 9);
+        loadMap("/maps/monster01.txt", 10);
+        loadMap("/maps/monster02.txt", 11);
+        loadMap("/maps/monster03.txt", 12);
 
     }
 

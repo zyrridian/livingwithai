@@ -6,6 +6,7 @@ import com.zkylab.entity.NPC_Musician;
 import com.zkylab.entity.NPC_Professor;
 import com.zkylab.entity.NPC_Red;
 import com.zkylab.monster.MON_RobotBrown;
+import com.zkylab.monster.MON_RobotCube;
 import com.zkylab.monster.MON_RobotWhite;
 import com.zkylab.monster.MON_RobotYellow;
 import com.zkylab.pet.PET_Dog;
@@ -81,23 +82,160 @@ public class AssetSetter {
 
     public void setMonster() {
 
-        int mapNumber = 4;
+        int mapNumber = 10;
         int i = 0;
 
         gamePanel.monster[mapNumber][i] = new MON_RobotWhite(gamePanel);
-        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 28;
-        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 28;
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 15;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 19;
         i++;
 
-        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
-        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 29;
-        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 28;
+        gamePanel.monster[mapNumber][i] = new MON_RobotWhite(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 18;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 22;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotWhite(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 19;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 24;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotWhite(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 28;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 19;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotWhite(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 23;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 22;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotWhite(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 27;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 21;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotCube(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 35;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 23;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotCube(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 31;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 24;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotCube(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 27;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 24;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotCube(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 24;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 27;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotCube(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 24;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 21;
+        i++;
+
+        mapNumber = 11;
+        i = 0;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotYellow(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 15;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 25;
         i++;
 
         gamePanel.monster[mapNumber][i] = new MON_RobotYellow(gamePanel);
-        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 22;
-        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 28;
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 20;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 27;
         i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotYellow(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 24;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 26;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotYellow(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 23;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 31;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotYellow(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 26;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 37;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotYellow(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 26;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 18;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotYellow(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 23;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 13;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotYellow(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 31;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 24;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotYellow(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 35;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 26;
+        i++;
+
+        mapNumber = 12;
+        i = 0;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 25;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 12;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 33;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 19;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 30;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 16;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 25;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 22;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 35;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 26;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 32;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 24;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 25;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 32;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 30;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 33;
+        i++;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 34;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 39;
+        i++;
+
     }
 
     public void setInteractiveTile() {

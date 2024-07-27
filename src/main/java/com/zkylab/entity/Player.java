@@ -267,10 +267,10 @@ public class Player extends Entity {
      * Loads the player's guarding images.
      */
     public void getGuardImage() {
-        guardUp = setup("/player/boy_guard_up", gamePanel.tileSize, gamePanel.tileSize);
-        guardDown = setup("/player/boy_guard_down", gamePanel.tileSize, gamePanel.tileSize);
-        guardLeft = setup("/player/boy_guard_left", gamePanel.tileSize, gamePanel.tileSize);
-        guardRight = setup("/player/boy_guard_right", gamePanel.tileSize, gamePanel.tileSize);
+        guardUp = setup("/player/mc_guard_up", gamePanel.tileSize, gamePanel.tileSize);
+        guardDown = setup("/player/mc_guard_down", gamePanel.tileSize, gamePanel.tileSize);
+        guardLeft = setup("/player/mc_guard_left", gamePanel.tileSize, gamePanel.tileSize);
+        guardRight = setup("/player/mc_guard_right", gamePanel.tileSize, gamePanel.tileSize);
     }
 
     /**
@@ -462,7 +462,7 @@ public class Player extends Entity {
                 gamePanel.gameState = GamePanel.GAME_OVER_STATE;
                 gamePanel.ui.commandNumber = -1;
                 gamePanel.stopMusic();
-                gamePanel.playSoundEffect(13);
+                gamePanel.playSoundEffect(25);
             }
         }
 

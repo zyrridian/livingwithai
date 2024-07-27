@@ -50,53 +50,26 @@ public class PET_Johnson extends Entity {
         dialogues[2][0] = "...";
         dialogues[3][0] = "Itu sudah cukup.";
         dialogues[3][1] = "Jangan memintaku menggonggong lagi.";
+        dialogues[4][0] = "Kau butuh sesuatu?";
+        dialogues[5][0] = "Pergilah.";
+        dialogues[6][0] = "Koinmu tidak cukup.";
+        dialogues[7][0] = "Tempat penyimpananmu penuh.";
+        dialogues[8][0] = "Kau tidak bisa menjual barang yang sedang digunakan.";
     }
 
     public void setAction() {
 
-        if (onPath) {
-            
-            // NPC path with goal
-            // int goalCol = 12;
-            // int goalRow = 9;
-            
-            // NPC path follow player
-            int goalCol = (gamePanel.player.worldX + gamePanel.player.solidArea.x) / gamePanel.tileSize;
-            int goalRow = (gamePanel.player.worldY + gamePanel.player.solidArea.y) / gamePanel.tileSize;
-            // if (nextCol == goalCol && nextRow == goalRow) onPath = false;
-
-
-            searchPath(goalCol, goalRow);
-
-        } else {
-
-            actionLockCounter++;
-
-            if (actionLockCounter == 120) { // Giving delay 2 second every movement
-
-                Random random = new Random();
-                int i = random.nextInt(100) + 1; // pick up a number from 1 to 100
-        
-                if (i <= 25) direction = "left";
-                if (i > 25 && i <= 50) direction = "right";
-                if (i > 50 && i <= 75) direction = "left";
-                if (i > 75 && i <= 100) direction = "right";
-                
-                actionLockCounter = 0;
-                
-            }
-
-        }
-        
     }
 
     public void speak() {
         facePlayer();
-        startDialogue(this, dialogueSet);
-        dialogueSet++;
-        if (dialogues[dialogueSet][0] == null) {
-            // dialogueSet = 0; // Dialogue will be replayed again
-            dialogueSet--; // Dialogue will be stuck in the end state
+        if (dialogueSet >= 4) {
+            // dialogueSet--; // Dialogue will be stuck in the end state
+            gamePanel.gameState = GamePanel.TRADE_STATE;
+            gamePanel.ui.npc = this;
+        } else {
+            startDialogue(this, dialogueSet);
+            dialogueSet++;
         }
     }
     

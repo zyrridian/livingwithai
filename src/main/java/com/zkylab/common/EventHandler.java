@@ -103,8 +103,8 @@ public class EventHandler {
         eventMaster.dialogues[13][1] = "Airnya sangat segar.";
         eventMaster.dialogues[13][2] = "Hingga membuatmu tidak sengaja meminumnya.";
 
-        // eventMaster.dialogues[6][0] = "Area ini berbahaya.";
-        // eventMaster.dialogues[6][1] = "Jangan mendekat.";
+        eventMaster.dialogues[14][0] = "Kamu tidak bisa kembali ke kota.";
+        eventMaster.dialogues[14][1] = "Teruslah berjalan maju.";
 
     }
 
@@ -149,35 +149,10 @@ public class EventHandler {
         else if (hit(3, 25, 27, "any"))
             skeletonLord();
 
-        // teleport new map
-        // else if (hit(7, 17, 28, "left"))
-        // teleport(8, 28, 27, GamePanel.INDOOR_AREA);
-        // else if (hit(8, 29, 27, "right"))
-        // teleport(7, 18, 28, GamePanel.INDOOR_AREA);
-        // else if (hit(9, 24, 11, "up"))
-        // teleport(7, 24, 28, GamePanel.INDOOR_AREA);
-        // else if (hit(9, 25, 11, "up"))
-        // teleport(7, 24, 28, GamePanel.INDOOR_AREA);
-        // else if (hit(7, 24, 28, "down"))
-        // teleport(9, (int) (25.5), 11, GamePanel.INDOOR_AREA);
-
-        // else if (hit(7, 32, 24, "up") || hit(7, 27, 24, "up"))
-        // interactObject(GamePanel.DIALOGUE_STATE, 2);
-        // else if (hit(7, 23, 24, "up") || hit(7, 34, 24, "up"))
-        // interactObject(GamePanel.DIALOGUE_STATE, 3);
-
-        // else if (hit(7, 20, 24, "up") || hit(7, 21, 24, "up") || hit(7, 22, 24,
-        // "up"))
-        // interactObject(GamePanel.DIALOGUE_STATE, 4);
-        // else if (hit(7, 19, 24, "down") || hit(7, 20, 25, "left") ||
-        // hit(7, 20, 26, "left") || hit(7, 20, 27, "left") ||
-        // hit(7, 19, 28, "up"))
-        // interactObject(GamePanel.DIALOGUE_STATE, 5);
-
         // ========== EVENT TELEPORT ========== //
         else if (hit(0, 28, 14, "up") || hit(0, 29, 14, "up"))
             teleport(1, 26, 31, GamePanel.OUTSIDE_AREA); // Teleport kota 1 ke kota 2
-        else if (hit(0, 36, 19, "right") || hit(0, 36, 20, "right") || hit(4, 18, 28, "right"))
+        else if (hit(0, 36, 19, "right") || hit(0, 36, 20, "right"))
             teleport(4, 18, 26, GamePanel.OUTSIDE_AREA); // Teleport kota 1 ke kota 5
 
         else if (hit(1, 25, 31, "down") || hit(1, 26, 31, "down"))
@@ -229,8 +204,8 @@ public class EventHandler {
         else if (hit(3, 19, 29, "up"))
             interactObject(2);
 
-        else if (hit(4, 33, 26, "right") || hit(4, 33, 27, "right") || hit(4, 33, 28, "right"))
-            autoDialog(4, 33, 26, GamePanel.DIALOGUE_STATE, 6);
+        // else if (hit(4, 33, 26, "right") || hit(4, 33, 27, "right") || hit(4, 33, 28, "right"))
+        //     autoDialog(4, 33, 26, GamePanel.DIALOGUE_STATE, 6);
 
         // ========== STUDIO EVENTS ========== //
         else if (hit(0, 23, 19, "up"))
@@ -280,6 +255,35 @@ public class EventHandler {
                 || hit(1, 24, 23, "left") || hit(1, 24, 24, "left") || hit(1, 24, 26, "left") || hit(1, 24, 27, "left"))
             interactObject(13); // air mancur kota 2
 
+        // loadMap("/maps/kota01.txt", 0);
+        // loadMap("/maps/kota02.txt", 1);
+        // loadMap("/maps/kota03.txt", 2);
+        // loadMap("/maps/kota04.txt", 3);
+        // loadMap("/maps/kota05.txt", 4);
+        // loadMap("/maps/utama.txt", 5);
+        // loadMap("/maps/dapur.txt", 6);
+        // loadMap("/maps/perpustakaan.txt", 7);
+        // loadMap("/maps/studio01.txt", 8);
+        // loadMap("/maps/perpustakaan.txt", 9);
+        // loadMap("/maps/monster01.txt", 10);
+        // loadMap("/maps/monster02.txt", 11);
+        // loadMap("/maps/monster03.txt", 12);
+
+        // ========== MONSTER MAP EVENTS ========== //
+        else if (hit(4, 33, 26, "right") || hit(4, 33, 27, "right") || hit(4, 33, 28, "right"))
+            teleport(10, 10, 27, GamePanel.OUTSIDE_AREA); // teleport from town05 to monster01
+        else if (hit(10, 10, 27, "left") || hit(10, 10, 28, "left"))
+            autoDialog(14); // if player want to go back to town05, they can't
+        else if (hit(10, 39, 27, "right") || hit(10, 39, 28, "right"))
+            teleport(11, 10, 24, GamePanel.OUTSIDE_AREA); // teleport from monster01 to monster02
+        else if (hit(11, 10, 24, "left") || hit(11, 10, 25, "left") || hit(11, 10, 26, "left") || hit(11, 10, 27, "left"))
+            autoDialog(14); // if player want to go back to monster01, they can't
+        else if (hit(11, 39, 24, "right") || hit(11, 39, 25, "right") || hit(11, 39, 26, "right") || hit(11, 39, 27, "right"))
+            teleport(12, 10, 26, GamePanel.DUNGEON_AREA); // teleport from monster02 to monster03
+        else if (hit(12, 10, 24, "left") || hit(12, 10, 25, "left") || hit(12, 10, 26, "left") || hit(12, 10, 27, "left"))
+            autoDialog(14); // if player want to go back to monster01, they can't
+        else if (hit(12, 39, 24, "right") || hit(12, 39, 25, "right") || hit(12, 39, 26, "right") || hit(12, 39, 27, "right"))
+            teleport(12, 10, 26, GamePanel.DUNGEON_AREA); // teleport monster03 to boss01
     }
 
     /**
@@ -322,8 +326,8 @@ public class EventHandler {
         return hit;
     }
 
-    public void autoDialog(int map, int col, int row, int gameState, int dialogue) {
-        gamePanel.gameState = gameState;
+    public void autoDialog(int dialogue) {
+        gamePanel.gameState = GamePanel.DIALOGUE_STATE;
         gamePanel.player.attackCanceled = true;
         eventMaster.startDialogue(eventMaster, dialogue);
     }
