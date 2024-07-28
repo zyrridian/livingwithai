@@ -6,7 +6,7 @@ import com.zkylab.entity.Entity;
 public class OBJ_Door extends Entity {
 
     GamePanel gamePanel;
-    public static final String objName = "Door";
+    public static final String objName = "Pintu";
 
     public OBJ_Door(GamePanel gamePanel) {
         super(gamePanel);
@@ -28,7 +28,7 @@ public class OBJ_Door extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0][0] = "You need a key to open this.";
+        dialogues[0][0] = "Butuh kunci untuk membukanya";
     }
 
     public void interact() {

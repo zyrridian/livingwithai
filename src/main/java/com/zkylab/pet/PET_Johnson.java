@@ -1,9 +1,12 @@
 package com.zkylab.pet;
 
-import java.util.Random;
 
 import com.zkylab.common.GamePanel;
 import com.zkylab.entity.Entity;
+import com.zkylab.object.OBJ_Key;
+import com.zkylab.object.OBJ_Potion_Red;
+import com.zkylab.object.OBJ_Shield_Blue;
+import com.zkylab.object.OBJ_Sword_Super;
 
 public class PET_Johnson extends Entity {
 
@@ -29,6 +32,7 @@ public class PET_Johnson extends Entity {
 
         getImage();
         setDialogue();
+        setItems();
 
     }
 
@@ -57,8 +61,12 @@ public class PET_Johnson extends Entity {
         dialogues[8][0] = "Kau tidak bisa menjual barang yang sedang digunakan.";
     }
 
-    public void setAction() {
 
+    public void setItems() {
+        inventory.add(new OBJ_Potion_Red(gamePanel));
+        inventory.add(new OBJ_Key(gamePanel));
+        inventory.add(new OBJ_Sword_Super(gamePanel));
+        inventory.add(new OBJ_Shield_Blue(gamePanel));
     }
 
     public void speak() {

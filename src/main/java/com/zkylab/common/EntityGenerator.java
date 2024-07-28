@@ -19,6 +19,7 @@ import com.zkylab.object.OBJ_Shield_Blue;
 import com.zkylab.object.OBJ_Shield_Red;
 import com.zkylab.object.OBJ_Shield_Wood;
 import com.zkylab.object.OBJ_Sword_Normal;
+import com.zkylab.object.OBJ_Sword_Super;
 import com.zkylab.object.OBJ_Tent;
 
 public class EntityGenerator {
@@ -50,6 +51,7 @@ public class EntityGenerator {
             case OBJ_Shield_Wood.objName: obj = new OBJ_Shield_Wood(gamePanel); break;
             case OBJ_Shield_Red.objName: obj = new OBJ_Shield_Red(gamePanel); break;
             case OBJ_Sword_Normal.objName: obj = new OBJ_Sword_Normal(gamePanel); break;
+            case OBJ_Sword_Super.objName: obj = new OBJ_Sword_Super(gamePanel); break;
             case OBJ_Tent.objName: obj = new OBJ_Tent(gamePanel); break;
         }
         return obj;

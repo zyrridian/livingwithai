@@ -6,7 +6,7 @@ import com.zkylab.entity.Entity;
 public class OBJ_Heart extends Entity {
 
     GamePanel gamePanel;
-    public static final String objName = "Heart";
+    public static final String objName = "Nyawa";
 
     public OBJ_Heart(GamePanel gamePanel) {
         super(gamePanel);
@@ -24,7 +24,7 @@ public class OBJ_Heart extends Entity {
 
     public boolean use(Entity entity) {
         gamePanel.playSoundEffect(2);
-        gamePanel.ui.addMessage("Life +" + value);
+        gamePanel.ui.addMessage("Nyawa +" + value);
         entity.life += value;
         return true;
     }

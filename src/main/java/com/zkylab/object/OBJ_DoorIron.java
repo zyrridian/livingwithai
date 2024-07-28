@@ -6,7 +6,7 @@ import com.zkylab.entity.Entity;
 public class OBJ_DoorIron extends Entity {
 
     GamePanel gamePanel;
-    public static final String objName = "Iron Door";
+    public static final String objName = "Pintu Besi";
 
     public OBJ_DoorIron(GamePanel gamePanel) {
         super(gamePanel);
@@ -28,7 +28,7 @@ public class OBJ_DoorIron extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0][0] = "It wont't budge!";
+        dialogues[0][0] = "Tidak bisa dibuka!";
     }
 
     public void interact() {

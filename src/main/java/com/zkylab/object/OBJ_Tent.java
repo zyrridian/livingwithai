@@ -6,7 +6,7 @@ import com.zkylab.entity.Entity;
 public class OBJ_Tent extends Entity {
 
     GamePanel gamePanel;
-    public static final String objName = "Tent";
+    public static final String objName = "Tenda";
 
     public OBJ_Tent(GamePanel gamePanel) {
         super(gamePanel);
@@ -15,7 +15,7 @@ public class OBJ_Tent extends Entity {
         type = type_consumable;
         name = objName;
         down1 = setup("/objects/tent", gamePanel.tileSize, gamePanel.tileSize);
-        description = "[Tent]\nYou can sleep until\nnext morning.";
+        description = "[Tent]\nDapat tidur hingga pagi.";
         price = 300;
         stackable = true;
     }

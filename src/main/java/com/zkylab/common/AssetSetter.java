@@ -5,6 +5,7 @@ import com.zkylab.entity.NPC_Librarian;
 import com.zkylab.entity.NPC_Musician;
 import com.zkylab.entity.NPC_Professor;
 import com.zkylab.entity.NPC_Red;
+import com.zkylab.monster.MON_RobotBoss;
 import com.zkylab.monster.MON_RobotBrown;
 import com.zkylab.monster.MON_RobotCube;
 import com.zkylab.monster.MON_RobotWhite;
@@ -234,6 +235,14 @@ public class AssetSetter {
         gamePanel.monster[mapNumber][i] = new MON_RobotBrown(gamePanel);
         gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 34;
         gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 39;
+        i++;
+
+        mapNumber = 14;
+        i = 0;
+
+        gamePanel.monster[mapNumber][i] = new MON_RobotBoss(gamePanel);
+        gamePanel.monster[mapNumber][i].worldX = gamePanel.tileSize * 21;
+        gamePanel.monster[mapNumber][i].worldY = gamePanel.tileSize * 17;
         i++;
 
     }

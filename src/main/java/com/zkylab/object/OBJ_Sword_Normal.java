@@ -5,7 +5,7 @@ import com.zkylab.entity.Entity;
 
 public class OBJ_Sword_Normal extends Entity {
     
-    public static final String objName = "Normal Sword";
+    public static final String objName = "Pedang normal";
 
     public OBJ_Sword_Normal(GamePanel gamePanel) {
         super(gamePanel);
@@ -15,7 +15,7 @@ public class OBJ_Sword_Normal extends Entity {
         attackValue = 1;
         attackArea.width = 36;
         attackArea.height = 36;
-        description = "[" + name + "]\nAn old sword.";
+        description = "[" + name + "]\nSebuah pedang tua.";
         price = 20;
         knockBackPower = 2;
         motion1_duration = 5;

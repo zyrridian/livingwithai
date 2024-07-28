@@ -27,7 +27,7 @@ public class MON_RobotBrown extends Entity {
         life = maxLife;
         attack = 5;
         defense = 0;
-        exp = 2;
+        exp = 15;
         projectile = new OBJ_Rock(gamePanel);
 
         solidArea.x = 9;

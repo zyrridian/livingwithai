@@ -6,7 +6,7 @@ import com.zkylab.entity.Entity;
 public class OBJ_Potion_Red extends Entity {
     
     GamePanel gamePanel;
-    public static final String objName = "Red Potion";
+    public static final String objName = "Potion Merah";
 
     public OBJ_Potion_Red(GamePanel gamePanel) {
         super(gamePanel);
@@ -15,14 +15,14 @@ public class OBJ_Potion_Red extends Entity {
         name = objName;
         value = 5;
         down1 = setup("/objects/potion_red", gamePanel.tileSize, gamePanel.tileSize);
-        description = "[" + name + "]\nHeals your life by " + value + ".";
+        description = "[" + name + "]\nMemulihkan nyawa +" + value + ".";
         price = 25;
         stackable = true;
         setDialogue();
     }
 
     public void setDialogue() {
-        dialogues[0][0] = "You drink the " + name + "! Your\n" + "life has been recovered by " + value + ".";
+        dialogues[0][0] = "Kamu meminum " + name + "!\n" + "Nyawa dipulihkan +" + value + ".";
     }
 
     public boolean use(Entity entity) {
