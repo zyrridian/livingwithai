@@ -14,6 +14,8 @@ import com.zkylab.entity.Entity;
 import com.zkylab.object.OBJ_Coin_Bronze;
 import com.zkylab.object.OBJ_Heart;
 import com.zkylab.object.OBJ_Mana_Crystal;
+import com.zkylab.object.OBJ_Moon;
+import com.zkylab.object.OBJ_Sun;
 
 public class UI {
 
@@ -21,6 +23,7 @@ public class UI {
     Graphics2D g2;
     public Font maruMonica, purisaBold, yoster, november;
     BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank, coin;
+    public BufferedImage day, night;
     public boolean messageOn = false;
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
@@ -70,6 +73,12 @@ public class UI {
 
         Entity bronzeCoin = new OBJ_Coin_Bronze(gamePanel);
         coin = bronzeCoin.down1;
+
+        Entity sun = new OBJ_Sun(gamePanel);
+        day = sun.down1;
+
+        Entity moon = new OBJ_Moon(gamePanel);
+        night = moon.down1;
 
     }
 
@@ -325,7 +334,7 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
             String text = "Living with AI";
             int x = getXforCenteredText(text);
-            int y = gamePanel.tileSize * 3;
+            int y = (int) (gamePanel.tileSize * 2.5);
 
             // Shadow
             g2.setColor(Color.gray);
@@ -337,11 +346,11 @@ public class UI {
 
             // Character Image
             x = gamePanel.screenWidth / 2 - (gamePanel.tileSize * 2) / 2;
-            y += gamePanel.tileSize * 2;
+            y += gamePanel.tileSize * 1.5;
             g2.drawImage(gamePanel.player.down1, x, y, gamePanel.tileSize * 2, gamePanel.tileSize * 2, null);
 
             // Menu
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
 
             text = "NEW GAME";
             x = getXforCenteredText(text);
@@ -359,13 +368,208 @@ public class UI {
                 g2.drawString(">", x - gamePanel.tileSize, y);
             }
 
-            text = "EXIT";
+            text = "CREDITS";
             x = getXforCenteredText(text);
             y += gamePanel.tileSize;
             g2.drawString(text, x, y);
             if (commandNumber == 2) {
                 g2.drawString(">", x - gamePanel.tileSize, y);
             }
+
+            text = "EXIT";
+            x = getXforCenteredText(text);
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+            if (commandNumber == 3) {
+                g2.drawString(">", x - gamePanel.tileSize, y);
+            }
+
+        } else if (titleScreenState == 2) {
+
+            g2.setColor(new Color(0, 0, 0));
+            g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+
+            // Title Name
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
+            String text = "Fungsi Tombol Keyboard:";
+            int x = getXforCenteredText(text);
+            int y = gamePanel.tileSize * 3;
+
+            // Shadow
+            g2.setColor(Color.gray);
+            g2.drawString(text, x + 3, y + 3);
+
+            // Main Color
+            g2.setColor(Color.white);
+            g2.drawString(text, x, y);
+
+            // Menu
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 15F));
+
+            text = "W/UP    - Bergerak ke atas";
+            x = gamePanel.tileSize * 3;
+            y += gamePanel.tileSize * 2;
+            g2.drawString(text, x, y);
+
+            text = "A/LEFT  - Bergerak ke kiri";
+            x = gamePanel.tileSize * 3;
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+
+            text = "S/DOWN  - Bergerak ke bawah";
+            x = gamePanel.tileSize * 3;
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+
+            text = "D/RIGHT - Bergerak ke kanan";
+            x = gamePanel.tileSize * 3;
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+
+            text = "J/ENTER - Berinteraksi dan menyerang";
+            x = gamePanel.tileSize * 3;
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+
+            text = "K/SPACE - Menahan serangan";
+            x = gamePanel.tileSize * 3;
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+
+            text = "L/CTRL  - Menembak";
+            x = gamePanel.tileSize * 12;
+            y = gamePanel.tileSize * 5;
+            g2.drawString(text, x, y);
+
+            text = "I/C     - Membuka inventory";
+            x = gamePanel.tileSize * 12;
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+
+            text = "M       - Membuka peta";
+            x = gamePanel.tileSize * 12;
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+
+            text = "X       - Membuka mini map";
+            x = gamePanel.tileSize * 12;
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+
+            text = "ESC     - Pause atau kembali";
+            x = gamePanel.tileSize * 12;
+            y += gamePanel.tileSize;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 15F));
+            text = "[Enter] - Mulai";
+            x = (int) (gamePanel.tileSize * 16.5);
+            y = gamePanel.tileSize * 11;
+            g2.drawString(text, x, y);
+
+            text = "[ESC] - Kembali";
+            x = (int) (gamePanel.tileSize * 1);
+            y = (int) (gamePanel.tileSize * 1.25);
+            g2.drawString(text, x, y);
+            
+        } else if (titleScreenState == 3) {
+
+            g2.setColor(new Color(0, 0, 0));
+            g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+
+            // Title Name
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
+            String text = "Credits";
+            int x = getXforCenteredText(text);
+            int y = gamePanel.tileSize * 2;
+
+            // Shadow
+            g2.setColor(Color.gray);
+            g2.drawString(text, x + 3, y + 3);
+
+            // Main Color
+            g2.setColor(Color.white);
+            g2.drawString(text, x, y);
+
+            // Menu
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+
+            text = "CHARACTER SPRITE SHEET DESIGN";
+            x = getXforHalfCenteredText(text);
+            y += gamePanel.tileSize * 2;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 15F));
+            text = "Arye Burhanudin";
+            x = getXforHalfCenteredText(text);
+            y += gamePanel.tileSize * 0.75;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+            text = "MAP TILESET DESIGN";
+            x = getXforHalfCenteredText(text);
+            y += gamePanel.tileSize * 1.5;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 15F));
+            text = "Rafi Ramdhani";
+            x = getXforHalfCenteredText(text);
+            y += gamePanel.tileSize * 0.75;
+            g2.drawString(text, x, y);
+
+            text = "Rezky Aditia Fauzan";
+            x = getXforHalfCenteredText(text);
+            y += gamePanel.tileSize / 2;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+            text = "STORY / SCENARIO";
+            x = getXforHalfCenteredText(text);
+            y += gamePanel.tileSize * 1.5;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 15F));
+            text = "Rafi Ramdhani";
+            x = getXforHalfCenteredText(text);
+            y += gamePanel.tileSize * 0.75;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+            text = "PROGRAMMING & MUSIC";
+            x = gamePanel.screenWidth / 2 + getXforHalfCenteredText(text);
+            y = gamePanel.tileSize * 4;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 15F));
+            text = "Rezky Aditia Fauzan";
+            x = gamePanel.screenWidth / 2 + getXforHalfCenteredText(text);
+            y += gamePanel.tileSize * 0.75;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+            text = "TEAM";
+            x = gamePanel.screenWidth / 2 + getXforHalfCenteredText(text);
+            y += (int) (gamePanel.tileSize * 1.5);
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 15F));
+            text = "Mandala Tech: STT Mandala Bandung";
+            x = gamePanel.screenWidth / 2 + getXforHalfCenteredText(text);
+            y += gamePanel.tileSize * 0.75;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 15F));
+            text = "Copyright 2024 Mandala Tech";
+            x = gamePanel.screenWidth / 2 + getXforHalfCenteredText(text);
+            y += gamePanel.tileSize * 0.5;
+            g2.drawString(text, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 15F));
+            text = "[ESC] - Kembali";
+            x = gamePanel.tileSize;
+            y = (int) (gamePanel.tileSize * 1.25);
+            g2.drawString(text, x, y);
+
 
         }
 
@@ -510,17 +714,17 @@ public class UI {
 
         // Names
         g2.drawString("Level", textX, textY); textY += lineHeight;
-        g2.drawString("Life", textX, textY); textY += lineHeight;
+        g2.drawString("Nyawa", textX, textY); textY += lineHeight;
         g2.drawString("Mana", textX, textY); textY += lineHeight;
-        g2.drawString("Strength", textX, textY); textY += lineHeight;
-        g2.drawString("Dexterity", textX, textY); textY += lineHeight;
-        g2.drawString("Attack", textX, textY); textY += lineHeight;
-        g2.drawString("Defense", textX, textY); textY += lineHeight;
+        g2.drawString("Kekuatan", textX, textY); textY += lineHeight;
+        g2.drawString("Kelincahan", textX, textY); textY += lineHeight;
+        g2.drawString("Atk", textX, textY); textY += lineHeight;
+        g2.drawString("Def", textX, textY); textY += lineHeight;
         g2.drawString("Exp", textX, textY); textY += lineHeight;
-        g2.drawString("Next Level", textX, textY); textY += lineHeight;
-        g2.drawString("Coin", textX, textY); textY += lineHeight + 8;
-        g2.drawString("Weapon", textX, textY); textY += lineHeight + 15;
-        g2.drawString("Shield", textX, textY); textY += lineHeight;
+        g2.drawString("Level Selanjutnya", textX, textY); textY += lineHeight;
+        g2.drawString("Koin", textX, textY); textY += lineHeight + 8;
+        g2.drawString("Senjata", textX, textY); textY += lineHeight + 15;
+        g2.drawString("Perisai", textX, textY); textY += lineHeight;
 
         // Values
         int tailX = (frameX + frameWidth) - 30;
@@ -747,7 +951,7 @@ public class UI {
 
         // Retry
         g2.setFont(g2.getFont().deriveFont(30F));
-        text = "Retry";
+        text = "Mulai Ulang";
         x = getXforCenteredText(text);
         y += gamePanel.tileSize * 4;
         g2.drawString(text, x, y);
@@ -756,7 +960,7 @@ public class UI {
         }
 
         // Back to the title screen
-        text = "Quit";
+        text = "Keluar";
         x = getXforCenteredText(text);
         y += 55;
         g2.drawString(text, x, y);
@@ -772,7 +976,7 @@ public class UI {
         int textY;
 
         // Title
-        String text = "Options";
+        String text = "Pengaturan";
         textX = getXforCenteredText(text);
         textY = frameY + gamePanel.tileSize;
         g2.drawString(text, textX, textY);
@@ -780,7 +984,7 @@ public class UI {
         // Fullscreen on/off
         textX = frameX + gamePanel.tileSize;
         textY += gamePanel.tileSize * 2;
-        g2.drawString("Fullscreen", textX, textY);
+        g2.drawString("Layar Penuh", textX, textY);
         if (commandNumber == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gamePanel.keyHandler.enterPressed) {
@@ -795,7 +999,7 @@ public class UI {
 
         // Music
         textY += gamePanel.tileSize;
-        g2.drawString("Music", textX, textY);
+        g2.drawString("Musik", textX, textY);
         if (commandNumber == 1) g2.drawString(">", textX - 25, textY);
 
         // Sound Effect
@@ -805,7 +1009,7 @@ public class UI {
 
         // Control
         textY += gamePanel.tileSize;
-        g2.drawString("Control", textX, textY);
+        g2.drawString("Kontrol", textX, textY);
         if (commandNumber == 3) {
             g2.drawString(">", textX - 25, textY);
             if (gamePanel.keyHandler.enterPressed) {
@@ -816,7 +1020,7 @@ public class UI {
 
         // End game
         textY += gamePanel.tileSize;
-        g2.drawString("End Game", textX, textY);
+        g2.drawString("Akhiri Permainan", textX, textY);
         if (commandNumber == 4) {
             g2.drawString(">", textX - 25, textY);
             if (gamePanel.keyHandler.enterPressed) {
@@ -827,7 +1031,7 @@ public class UI {
 
         // Back
         textY += gamePanel.tileSize * 2;
-        g2.drawString("Back", textX, textY);
+        g2.drawString("Kembali", textX, textY);
         if (commandNumber == 5) {
             g2.drawString(">", textX - 25, textY);
             if (gamePanel.keyHandler.enterPressed) {
@@ -866,7 +1070,7 @@ public class UI {
         int textX = frameX + gamePanel.tileSize;
         int textY = frameY + gamePanel.tileSize * 3;
 
-        currentDialogue = "The change will take\neffect after restarting\nthe game.";
+        currentDialogue = "Perubahan akan terjadi\nsetelah memulai ulang\npermainan.";
 
         for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
@@ -875,7 +1079,7 @@ public class UI {
 
         // Back
         textY = frameY + gamePanel.tileSize * 9;
-        g2.drawString("Back", textX, textY);
+        g2.drawString("Kembali", textX, textY);
         if (commandNumber == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gamePanel.keyHandler.enterPressed) {
@@ -891,19 +1095,19 @@ public class UI {
         int textY;
 
         // Title
-        String text = "Control";
+        String text = "Kontrol";
         textX = getXforCenteredText(text);
         textY = frameY + gamePanel.tileSize;
         g2.drawString(text, textX, textY);
 
         textX = frameX + gamePanel.tileSize;
         textY += gamePanel.tileSize;
-        g2.drawString("Move", textX, textY); textY += gamePanel.tileSize;
-        g2.drawString("Confirm", textX, textY); textY += gamePanel.tileSize;
-        g2.drawString("Attack", textX, textY); textY += gamePanel.tileSize;
-        g2.drawString("Guard", textX, textY); textY += gamePanel.tileSize;
-        g2.drawString("Fireball", textX, textY); textY += gamePanel.tileSize;
-        g2.drawString("Character Screen", textX, textY); textY += gamePanel.tileSize;
+        g2.drawString("Bergerak", textX, textY); textY += gamePanel.tileSize;
+        g2.drawString("Aksi", textX, textY); textY += gamePanel.tileSize;
+        g2.drawString("Menyerang", textX, textY); textY += gamePanel.tileSize;
+        g2.drawString("Bertahan", textX, textY); textY += gamePanel.tileSize;
+        g2.drawString("Menembak", textX, textY); textY += gamePanel.tileSize;
+        g2.drawString("Inventori", textX, textY); textY += gamePanel.tileSize;
         g2.drawString("Pause", textX, textY); textY += gamePanel.tileSize;
 
         textX = (int) (frameX + gamePanel.tileSize * 5.7);
@@ -913,13 +1117,13 @@ public class UI {
         g2.drawString("J", textX, textY); textY += gamePanel.tileSize;
         g2.drawString("K", textX, textY); textY += gamePanel.tileSize;
         g2.drawString("L", textX, textY); textY += gamePanel.tileSize;
-        g2.drawString("C", textX, textY); textY += gamePanel.tileSize;
+        g2.drawString("I", textX, textY); textY += gamePanel.tileSize;
         g2.drawString("ESC", textX, textY); textY += gamePanel.tileSize;
 
         // Back
         textX = frameX + gamePanel.tileSize;
         textY = frameY + gamePanel.tileSize * 9;
-        g2.drawString("Back", textX, textY);
+        g2.drawString("Kembali", textX, textY);
         if (commandNumber == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gamePanel.keyHandler.enterPressed) {
@@ -935,7 +1139,7 @@ public class UI {
         int textX = frameX + gamePanel.tileSize;
         int textY = frameY + gamePanel.tileSize * 3;
 
-        currentDialogue = "Quit the game and\nreturn to the title\nscreen?";
+        currentDialogue = "Keluar dari game dan kembali\nke menu utama?";
 
         for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
@@ -943,7 +1147,7 @@ public class UI {
         }
 
         // Yes
-        String text = "Yes";
+        String text = "Ya";
         textX = getXforCenteredText(text);
         textY += gamePanel.tileSize * 2;
         g2.drawString(text, textX, textY);
@@ -952,13 +1156,14 @@ public class UI {
             if (gamePanel.keyHandler.enterPressed) {
                 subState = 0;
                 gamePanel.stopMusic();
+                titleScreenState = 1;
                 gamePanel.gameState = GamePanel.TITLE_STATE;
                 gamePanel.resetGame(true);
             }
         }
 
         // No
-        text = "No";
+        text = "Tidak";
         textX = getXforCenteredText(text);
         textY += gamePanel.tileSize;
         g2.drawString(text, textX, textY);
@@ -1198,6 +1403,11 @@ public class UI {
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return gamePanel.screenWidth / 2 - length / 2;
+    }
+
+    public int getXforHalfCenteredText(String text) {
+        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        return gamePanel.screenWidth / 4 - length / 2;
     }
 
     public int getXforAlightToRightText(String text, int tailX) {

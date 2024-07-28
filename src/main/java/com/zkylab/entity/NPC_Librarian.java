@@ -1,7 +1,5 @@
 package com.zkylab.entity;
 
-import java.util.Random;
-
 import com.zkylab.common.GamePanel;
 
 public class NPC_Librarian extends Entity {
@@ -63,6 +61,9 @@ public class NPC_Librarian extends Entity {
         dialogues[2][1] = "Komputer ini menggunakan konsep mekanika\nkuantum, dimana partikel bisa berada di dua\ntempat sekaligus.";
         dialogues[2][2] = "Jika hal ini berhasil, maka teknologi AI akan\nsemakin berkembang.";
         dialogues[2][3] = "Dan dunia medis pun akan terkena dampaknya,\nmembawa perubahan besar dalam diagnosis dan\nperawatan.";
+        dialogues[3][0] = "Silahkan baca buku di sana untuk menambah\nwawasanmu.";
+        dialogues[3][1] = "Berhentilah berbicara denganku.";
+        dialogues[3][2] = "Silahkan baca buku di rak.";
     }
 
     public void setAction() {
@@ -108,8 +109,8 @@ public class NPC_Librarian extends Entity {
         startDialogue(this, dialogueSet);
         dialogueSet++;
         if (dialogues[dialogueSet][0] == null) {
-            dialogueSet = 0; // Dialogue will be replayed again
-            // dialogueSet--; // Dialogue will be stuck in the end state
+            // dialogueSet = 0; // Dialogue will be replayed again
+            dialogueSet--; // Dialogue will be stuck in the end state
         }
     }
     

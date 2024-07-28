@@ -28,7 +28,7 @@ public class KeyHandler implements KeyListener {
         switch (gamePanel.gameState) {
             case GamePanel.TITLE_STATE: handleTitleState(code); break;
             case GamePanel.PLAY_STATE: handlePlayState(code); break;
-            case GamePanel.PAUSE_STATE: handlePauseState(code); break;
+            // case GamePanel.PAUSE_STATE: handlePauseState(code); break;
             case GamePanel.DIALOGUE_STATE: handleDialogueState(code); break;
             case GamePanel.CUTSCENE_STATE: handleDialogueState(code); break;
             case GamePanel.CHARACTER_STATE: handleCharacterState(code); break;
@@ -60,27 +60,42 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W) {
                 gamePanel.ui.commandNumber--;
                 gamePanel.playSoundEffect(5);
-                if (gamePanel.ui.commandNumber < 0) gamePanel.ui.commandNumber = 2;
+                if (gamePanel.ui.commandNumber < 0) gamePanel.ui.commandNumber = 3;
             }
             if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_S) {
                 gamePanel.ui.commandNumber++;
                 gamePanel.playSoundEffect(5);
-                if (gamePanel.ui.commandNumber > 2) gamePanel.ui.commandNumber = 0;
+                if (gamePanel.ui.commandNumber > 3) gamePanel.ui.commandNumber = 0;
             }
             if (code == KeyEvent.VK_ENTER) {
                 gamePanel.playSoundEffect(3);
                 if (gamePanel.ui.commandNumber == 0) {
-                    gamePanel.gameState = GamePanel.PLAY_STATE;
-                    gamePanel.playMusic(22);
-                    // gamePanel.gameState = GamePanel.CUTSCENE_STATE;
-                    // gamePanel.cManager.sceneNumber = gamePanel.cManager.opening;
+                    gamePanel.ui.titleScreenState = 2;
                 }
                 if (gamePanel.ui.commandNumber == 1) {
                     gamePanel.saveLoad.load();
                     gamePanel.gameState = GamePanel.PLAY_STATE;
                     gamePanel.playMusic(22);
                 }
-                if (gamePanel.ui.commandNumber == 2) System.exit(code);
+                if (gamePanel.ui.commandNumber == 2) {
+                    gamePanel.ui.titleScreenState = 3;
+                }
+                if (gamePanel.ui.commandNumber == 3) System.exit(code);
+            }
+        } else if (gamePanel.ui.titleScreenState == 2) {
+            if (code == KeyEvent.VK_ENTER) {
+                gamePanel.playSoundEffect(3);
+                gamePanel.gameState = GamePanel.PLAY_STATE;
+                gamePanel.playMusic(22);
+                // gamePanel.gameState = GamePanel.CUTSCENE_STATE;
+                // gamePanel.cManager.sceneNumber = gamePanel.cManager.opening;
+            }
+            if (code == KeyEvent.VK_ESCAPE) {
+                gamePanel.ui.titleScreenState = 1;
+            }
+        } else if (gamePanel.ui.titleScreenState == 3) {
+            if (code == KeyEvent.VK_ESCAPE) {
+                gamePanel.ui.titleScreenState = 1;
             }
         }
     }
@@ -95,8 +110,8 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_K || code == KeyEvent.VK_SPACE) spacePressed = true;
         if (code == KeyEvent.VK_L || code == KeyEvent.VK_CONTROL) shotKeyPressed = true;
         if (code == KeyEvent.VK_M) gamePanel.gameState = GamePanel.MAP_STATE;
-        if (code == KeyEvent.VK_P) gamePanel.gameState = GamePanel.PAUSE_STATE;
-        if (code == KeyEvent.VK_C) gamePanel.gameState = GamePanel.CHARACTER_STATE;
+        // if (code == KeyEvent.VK_P) gamePanel.gameState = GamePanel.PAUSE_STATE;
+        if (code == KeyEvent.VK_C || code == KeyEvent.VK_I) gamePanel.gameState = GamePanel.CHARACTER_STATE;
         if (code == KeyEvent.VK_ESCAPE) gamePanel.gameState = GamePanel.OPTIONS_STATE;
 
         if (code == KeyEvent.VK_X) {
@@ -135,11 +150,11 @@ public class KeyHandler implements KeyListener {
 
     }
 
-    public void handlePauseState(int code) {
-        if (code == KeyEvent.VK_P || code == KeyEvent.VK_ESCAPE) {
-            gamePanel.gameState = GamePanel.PLAY_STATE;
-        }
-    }
+    // public void handlePauseState(int code) {
+    //     if (code == KeyEvent.VK_P || code == KeyEvent.VK_ESCAPE) {
+    //         gamePanel.gameState = GamePanel.PLAY_STATE;
+    //     }
+    // }
 
     public void handleDialogueState(int code) {
         if (code == KeyEvent.VK_ENTER || code == KeyEvent.VK_E) {
@@ -148,7 +163,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void handleCharacterState(int code) {
-        if (code == KeyEvent.VK_C) gamePanel.gameState = GamePanel.PLAY_STATE;
+        if (code == KeyEvent.VK_C || code == KeyEvent.VK_I || code == KeyEvent.VK_ESCAPE) gamePanel.gameState = GamePanel.PLAY_STATE;
         if (code == KeyEvent.VK_ENTER) gamePanel.player.selectItem();
         playerInventory(code);
     }
@@ -221,6 +236,8 @@ public class KeyHandler implements KeyListener {
                 gamePanel.playMusic(22);
             } else if (gamePanel.ui.commandNumber == 1) {
                 gamePanel.gameState = GamePanel.TITLE_STATE;
+                gamePanel.ui.titleScreenState = 1;
+                gamePanel.ui.commandNumber = 0;
                 gamePanel.resetGame(true);
             }
         }

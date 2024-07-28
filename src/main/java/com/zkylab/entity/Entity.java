@@ -30,7 +30,7 @@ public class Entity {
     public boolean collision = false;
 
     // Dialogues
-    public String dialogues[][] = new String[20][20];
+    public String dialogues[][] = new String[50][20];
 
     // Entity Linking
     public Entity attacker;

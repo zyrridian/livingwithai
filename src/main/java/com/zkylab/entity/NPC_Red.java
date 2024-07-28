@@ -6,7 +6,7 @@ import com.zkylab.common.GamePanel;
 
 public class NPC_Red extends Entity {
 
-    public static final String npcName = "Red";
+    public static final String npcName = "Grandmaster";
 
     public NPC_Red(GamePanel gamePanel) {
         super(gamePanel);
@@ -41,14 +41,59 @@ public class NPC_Red extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0][0] = "Halo, namaku Tim.";
-        dialogues[0][1] = "Aku benar-benar kesulitan dengan tugas esai\nsekolahku.";
-        dialogues[0][2] = "Aku tidak tahu harus mulai dari mana.";
-        dialogues[0][3] = "Bisakah kau membantuku?";
-        dialogues[0][4] = "Tentu saja bisa!";
-        dialogues[0][5] = "Temui librarian di perpustakaan.";
-        dialogues[1][0] = "Perpustakaan ada di salah satu gedung di sana.";
-        dialogues[2][0] = "Cepatlah! Aku butuh bantuanmu.";
+        dialogues[0][0] = "Halo, Bobi.";
+        dialogues[0][1] = "Selamat datang di kota kami.";
+        dialogues[0][2] = "...";
+        dialogues[0][3] = ".........";
+        dialogues[0][4] = "Tunggu.";
+        dialogues[0][5] = "Namamu bukan Bobi.";
+        dialogues[0][6] = "Aku bicara padamu.";
+        dialogues[0][7] = "Orang di balik layar yang baru saja menekan\ntombol [Enter] pada keyboard.";
+        dialogues[0][8] = "Atau kamu yang sedang menonton seseorang\nmemainkan game ini.";
+
+        dialogues[1][0] = "Namun jika namamu adalah Bobi, kamu pasti\nterkejut sebelumnya.";
+
+        dialogues[2][0] = "Aku adalah Grandmaster di kota ini.";
+        dialogues[2][1] = "Silahkan jelajahi kota dan berinteraksi dengan\npara NPC.";
+        dialogues[2][2] = "Beberapa gedung dapat dibuka, namun sisanya\ntidak.";
+        dialogues[2][3] = "Sepertinya pencipta kami belum sempat membuat\ndesain interior untuk gedung tersebut.";
+
+        dialogues[3][0] = "Aku memang NPC seperti yang lainnya.";
+        dialogues[3][1] = "Tapi hanya aku yang mengetahui bahwa dunia\nini adalah sebuah game.";
+        dialogues[3][2] = "Itulah sebabnya aku disebut Grandmaster.";
+
+        dialogues[4][0] = "Keluarkan perisai tepat sebelum musuh menerang,\nagar mereka terkena efek knockback.";
+        dialogues[4][1] = "Dan meningkatkan damage-mu selama berberapa\ndetik.";
+        dialogues[4][2] = "Aku memberitahu hal ini karena...";
+        dialogues[4][3] = "Di arah timur, ada banyak robot yang bisa kamu\nlawan.";
+        dialogues[4][4] = "Namun mereka tidak akan pernah habis.";
+        dialogues[4][5] = "Selamat datang di game tanpa akhir!";
+
+        dialogues[5][0] = "Jika kamu berjalan terus ke arah timur, kamu\nakan menemukan sebuah robot raksasa.";
+        dialogues[5][1] = "Naikkan levelmu sebelum mengalahkan dia.";
+        dialogues[5][2] = "Atau eksplorasi seluruh kota untuk menemukan\nitem legendaris.";
+        dialogues[5][3] = "Atau...";
+        dialogues[5][4] = "Temukanlah fungsi keyboard tersembunyi dari\ngame ini.";
+        dialogues[5][5] = "Kamu akan mendapatkan akses pada kekuatanku.";
+
+        dialogues[6][0] = "Jika kamu adalah orang malas membaca, dan\nmelewati percakapanku...";
+        dialogues[6][1] = "Aku akan mengulanginya kembali.";
+
+        dialogues[7][0] = "Halo, Bobi.";
+        dialogues[7][1] = "Selamat datang di kota kami.";
+        dialogues[7][2] = "...";
+        dialogues[7][3] = ".........";
+        dialogues[7][4] = "Tunggu.";
+        dialogues[7][5] = "Namamu bukan Bobi.";
+        dialogues[7][6] = "Aku bicara padamu.";
+        dialogues[7][7] = "Orang di balik layar yang baru saja menekan\ntombol [Enter] pada keyboard.";
+        dialogues[7][8] = "Atau kamu yang sedang menonton seseorang\nmemainkan game ini.";
+        dialogues[7][9] = "Dan juga...";
+        dialogues[7][10] = "Yang baru saja melewatkan percakapanku.";
+
+        dialogues[8][0] = "Baiklah.";
+        dialogues[8][1] = "Kali ini aku benar-benar akan mengulang\nkalimatku.";
+        dialogues[8][2] = "Termasuk bagian ini juga.";
     }
 
     public void setAction() {
@@ -82,8 +127,8 @@ public class NPC_Red extends Entity {
         startDialogue(this, dialogueSet);
         dialogueSet++;
         if (dialogues[dialogueSet][0] == null) {
-            // dialogueSet = 0; // Dialogue will be replayed again
-            dialogueSet--; // Dialogue will be stuck in the end state
+            dialogueSet = 0; // Dialogue will be replayed again
+            // dialogueSet--; // Dialogue will be stuck in the end state
         }
     }
 }
