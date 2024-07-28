@@ -68,10 +68,12 @@ public class TileManager {
         loadMap("/maps/dapur.txt", 6);
         loadMap("/maps/perpustakaan.txt", 7);
         loadMap("/maps/studio01.txt", 8);
-        loadMap("/maps/perpustakaan.txt", 9);
+        // loadMap("/maps/perpustakaan.txt", 9);
         loadMap("/maps/monster01.txt", 10);
         loadMap("/maps/monster02.txt", 11);
         loadMap("/maps/monster03.txt", 12);
+        loadMap("/maps/boss01.txt", 13);
+        loadMap("/maps/boss02.txt", 14);
 
     }
 

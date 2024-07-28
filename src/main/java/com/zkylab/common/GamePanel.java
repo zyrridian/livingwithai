@@ -480,7 +480,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (nextArea == INDOOR_AREA)
                 playMusic(23);
             if (nextArea == DUNGEON_AREA)
-                playMusic(24);
+                playMusic(7);
             assetSetter.setNPC();
         }
         currentArea = nextArea;

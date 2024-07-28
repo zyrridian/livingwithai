@@ -69,7 +69,7 @@ public class Map extends TileManager {
         // Hint
         g2.setFont(gamePanel.ui.maruMonica.deriveFont(32F));
         g2.setColor(Color.white);
-        g2.drawString("Press M to close", 750, 550);
+        g2.drawString("Tekan M untuk keluar", 695, 550);
 
     }
 

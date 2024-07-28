@@ -33,6 +33,11 @@ public class SaveLoad {
             dStorage.exp = gamePanel.player.exp;
             dStorage.nextLevelExp = gamePanel.player.nextLevelExp;
             dStorage.coin = gamePanel.player.coin;
+            dStorage.playerX = gamePanel.player.worldX;
+            dStorage.playerY = gamePanel.player.worldY;
+            dStorage.playerDirection = gamePanel.player.direction;
+            dStorage.playerMap = gamePanel.currentMap;
+            dStorage.playerArea = gamePanel.currentArea;
 
             // Player inventory
             for (int i = 0; i < gamePanel.player.inventory.size(); i++) {
@@ -92,6 +97,11 @@ public class SaveLoad {
             gamePanel.player.exp = dStorage.exp;
             gamePanel.player.nextLevelExp = dStorage.nextLevelExp;
             gamePanel.player.coin = dStorage.coin;
+            gamePanel.player.worldX = dStorage.playerX;
+            gamePanel.player.worldY = dStorage.playerY;
+            gamePanel.player.direction = dStorage.playerDirection;
+            gamePanel.currentMap = dStorage.playerMap;
+            gamePanel.currentArea = dStorage.playerArea;
 
             // Player inventory
             gamePanel.player.inventory.clear();

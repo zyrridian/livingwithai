@@ -164,9 +164,14 @@ public class Lighting {
                 break;
         }
 
-        g2.setColor(Color.white);
-        g2.setFont(g2.getFont().deriveFont(32F));
-        g2.drawString(situation, 800, 500);
+        if (situation == "Day" || situation == "Dusk") {
+            g2.drawImage(gamePanel.ui.day, (int) (gamePanel.tileSize * 18.5), (int) (gamePanel.tileSize * 10.5), gamePanel.tileSize, gamePanel.tileSize, null);
+        } else if (situation == "Night" || situation == "Dawn") {
+            g2.drawImage(gamePanel.ui.night, (int) (gamePanel.tileSize * 18.5), (int) (gamePanel.tileSize * 10.5), gamePanel.tileSize, gamePanel.tileSize, null);
+        }
+        // g2.setColor(Color.white);
+        // g2.setFont(g2.getFont().deriveFont(32F));
+        // g2.drawString(situation, 800, 500);
 
     }
 

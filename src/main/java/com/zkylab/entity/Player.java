@@ -12,6 +12,7 @@ import com.zkylab.object.OBJ_Key;
 import com.zkylab.object.OBJ_Lantern;
 import com.zkylab.object.OBJ_Shield_Wood;
 import com.zkylab.object.OBJ_Sword_Normal;
+import com.zkylab.object.OBJ_Tent;
 
 public class Player extends Entity {
 
@@ -101,7 +102,7 @@ public class Player extends Entity {
      * Sets the player's dialogue messages.
      */
     public void setDialogue() {
-        dialogues[0][0] = "You are level " + level + " now!\nYou feel stronger!";
+        dialogues[0][0] = "Sekarang levelmu adalah " + level + " ! Kamu bertambah kuat!";
     }
 
     /**
@@ -127,6 +128,7 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gamePanel));
+        inventory.add(new OBJ_Tent(gamePanel));
         inventory.add(new OBJ_Lantern(gamePanel));
     }
 
@@ -485,9 +487,9 @@ public class Player extends Entity {
                 String text;
                 if (canObtainItem(gamePanel.obj[gamePanel.currentMap][i])) {
                     gamePanel.playSoundEffect(1);
-                    text = "Got a " + gamePanel.obj[gamePanel.currentMap][i].name + ":";
+                    text = "Mendapatkan " + gamePanel.obj[gamePanel.currentMap][i].name + ":";
                 } else {
-                    text = "You cannot carry any more!";
+                    text = "Kamu tidak bisa membawa item lagi!";
                 }
                 gamePanel.ui.addMessage(text);
                 gamePanel.obj[gamePanel.currentMap][i] = null;
@@ -551,7 +553,7 @@ public class Player extends Entity {
 
                 if (gamePanel.monster[gamePanel.currentMap][i].life <= 0) {
                     gamePanel.monster[gamePanel.currentMap][i].dying = true;
-                    gamePanel.ui.addMessage("Killed the " + gamePanel.monster[gamePanel.currentMap][i].name + "!");
+                    gamePanel.ui.addMessage(gamePanel.monster[gamePanel.currentMap][i].name + " telah dikalahkan!");
                     gamePanel.ui.addMessage("Exp + " + gamePanel.monster[gamePanel.currentMap][i].exp);
                     exp += gamePanel.monster[gamePanel.currentMap][i].exp;
                     checkLevelUp();
