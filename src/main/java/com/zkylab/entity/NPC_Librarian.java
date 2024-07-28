@@ -63,7 +63,7 @@ public class NPC_Librarian extends Entity {
         dialogues[2][3] = "Dan dunia medis pun akan terkena dampaknya,\nmembawa perubahan besar dalam diagnosis dan\nperawatan.";
         dialogues[3][0] = "Silahkan baca buku di sana untuk menambah\nwawasanmu.";
         dialogues[3][1] = "Berhentilah berbicara denganku.";
-        dialogues[3][2] = "Silahkan baca buku di rak.";
+        dialogues[4][0] = "Silahkan baca buku di rak.";
     }
 
     public void setAction() {
