@@ -62,7 +62,7 @@ public class NPC_Red extends Entity {
         dialogues[3][1] = "Tapi hanya aku yang mengetahui bahwa dunia\nini adalah sebuah game.";
         dialogues[3][2] = "Itulah sebabnya aku disebut Grandmaster.";
 
-        dialogues[4][0] = "Keluarkan perisai tepat sebelum musuh menerang,\nagar mereka terkena efek knockback.";
+        dialogues[4][0] = "Keluarkan perisai tepat sebelum musuh menyerang,\nagar mereka terkena efek knockback.";
         dialogues[4][1] = "Dan meningkatkan damage-mu selama berberapa\ndetik.";
         dialogues[4][2] = "Aku memberitahu hal ini karena...";
         dialogues[4][3] = "Di arah timur, ada banyak robot yang bisa kamu\nlawan.";

@@ -217,7 +217,7 @@ public class EventHandler {
         eventMaster.dialogues[35][2] = "\"Jangan lupa mengganti kata sandi setiap 30 hari.\"";
         eventMaster.dialogues[35][3] = "\"Terakhir diperbarui: 29 hari yang lalu.\"";
 
-        eventMaster.dialogues[36][0] = "Kamu mengakses komputer dan menemukan layar yang penuh\ndenganfolder.";
+        eventMaster.dialogues[36][0] = "Kamu mengakses komputer dan menemukan layar yang penuh\ndengan folder.";
         eventMaster.dialogues[36][1] = "Salah satu folder memiliki nama yang mencurigakan:";
         eventMaster.dialogues[36][2] = "\"Folder Rahasia: Jangan Dibuka!\"";
 
@@ -236,7 +236,7 @@ public class EventHandler {
 
         eventMaster.dialogues[40][0] = "Jangan mendekat.";
         eventMaster.dialogues[40][1] = "Area ini terlarang.";
-        
+
         eventMaster.dialogues[41][0] = "Sudah kubilang berhenti.";
         eventMaster.dialogues[41][1] = "Lebih baik kau mengeksplorasi kota terlebih dahulu.";
 
@@ -274,7 +274,7 @@ public class EventHandler {
      * Handles specific events based on player interactions with event rectangles.
      */
     private void handleEvents() {
-        
+
         // ========== EVENT TELEPORT ========== //
         if (hit(0, 28, 14, "up") || hit(0, 29, 14, "up"))
             teleport(1, 26, 31, GamePanel.OUTSIDE_AREA); // Teleport kota 1 ke kota 2
@@ -386,17 +386,23 @@ public class EventHandler {
             autoDialog(14); // if player want to go back to town05, they can't
         else if (hit(10, 39, 27, "right") || hit(10, 39, 28, "right"))
             teleport(11, 10, 24, GamePanel.OUTSIDE_AREA); // teleport from monster01 to monster02
-        else if (hit(11, 10, 24, "left") || hit(11, 10, 25, "left") || hit(11, 10, 26, "left") || hit(11, 10, 27, "left"))
+        else if (hit(11, 10, 24, "left") || hit(11, 10, 25, "left") || hit(11, 10, 26, "left")
+                || hit(11, 10, 27, "left"))
             autoDialog(14); // if player want to go back to monster01, they can't
-        else if (hit(11, 39, 24, "right") || hit(11, 39, 25, "right") || hit(11, 39, 26, "right") || hit(11, 39, 27, "right"))
+        else if (hit(11, 39, 24, "right") || hit(11, 39, 25, "right") || hit(11, 39, 26, "right")
+                || hit(11, 39, 27, "right"))
             teleport(12, 10, 26, GamePanel.DUNGEON_AREA); // teleport from monster02 to monster03
-        else if (hit(12, 10, 24, "left") || hit(12, 10, 25, "left") || hit(12, 10, 26, "left") || hit(12, 10, 27, "left"))
+        else if (hit(12, 10, 24, "left") || hit(12, 10, 25, "left") || hit(12, 10, 26, "left")
+                || hit(12, 10, 27, "left"))
             autoDialog(14); // if player want to go back to monster01, they can't
-        else if (hit(12, 39, 24, "right") || hit(12, 39, 25, "right") || hit(12, 39, 26, "right") || hit(12, 39, 27, "right"))
+        else if (hit(12, 39, 24, "right") || hit(12, 39, 25, "right") || hit(12, 39, 26, "right")
+                || hit(12, 39, 27, "right"))
             teleport(13, 5, 26, GamePanel.DUNGEON_AREA); // teleport monster03 to boss01
         else if (hit(13, 5, 24, "left") || hit(13, 5, 25, "left") || hit(13, 5, 26, "left") || hit(13, 5, 27, "left"))
             autoDialog(14); // if player want to go back to monster01, they can't
-        else if (hit(13, 28, 23, "right") || hit(13, 28, 24, "right") || hit(13, 31, 23, "left") || hit(13, 31, 24, "left") || hit(13, 29, 22, "down") || hit(13, 30, 22, "down") || hit(13, 29, 25, "up") || hit(13, 30, 25, "up"))
+        else if (hit(13, 28, 23, "right") || hit(13, 28, 24, "right") || hit(13, 31, 23, "left")
+                || hit(13, 31, 24, "left") || hit(13, 29, 22, "down") || hit(13, 30, 22, "down")
+                || hit(13, 29, 25, "up") || hit(13, 30, 25, "up"))
             healingPool(); // healing pool
         else if (hit(13, 24, 13, "up"))
             teleport(14, 24, 34, GamePanel.DUNGEON_AREA); // teleport from boss01 to boss02
@@ -404,7 +410,6 @@ public class EventHandler {
             autoDialog(14); // if player want to go back to monster01, they can't
         else if (hit(14, 24, 10, "up"))
             teleport(0, 19, 27, GamePanel.OUTSIDE_AREA); // teleport from boss01 to boss02
-
 
         // ========== LIBRARY EVENTS ========== //
 
@@ -416,7 +421,7 @@ public class EventHandler {
             interactObject(17); // rak buku
         else if (hit(7, 18, 26, "up"))
             interactObject(18); // rak buku
-        
+
         else if (hit(7, 21, 26, "up") || hit(7, 22, 26, "up"))
             interactObject(19); // rak buku
         else if (hit(7, 23, 26, "up") || hit(7, 24, 26, "up"))
@@ -425,7 +430,7 @@ public class EventHandler {
             interactObject(21); // rak buku
         else if (hit(7, 27, 26, "up") || hit(7, 28, 26, "up"))
             interactObject(22); // rak buku
-        
+
         else if (hit(7, 12, 16, "up") || hit(7, 13, 16, "up"))
             interactObject(23); // rak buku
         else if (hit(7, 14, 16, "up") || hit(7, 15, 16, "up"))
@@ -438,7 +443,7 @@ public class EventHandler {
             interactObject(27); // rak buku
         else if (hit(7, 22, 16, "up") || hit(7, 23, 16, "up"))
             interactObject(28); // rak buku
-        
+
         else if (hit(7, 26, 16, "up") || hit(7, 27, 16, "up"))
             interactObject(29); // rak buku
         else if (hit(7, 28, 16, "up") || hit(7, 29, 16, "up"))
@@ -451,45 +456,47 @@ public class EventHandler {
             interactObject(33); // rak buku
         else if (hit(7, 36, 16, "up") || hit(7, 37, 16, "up"))
             interactObject(34); // rak buku
-        
+
         else if (hit(7, 22, 16, "down") || hit(7, 22, 19, "up"))
             interactObject(35); // komputer
         else if (hit(7, 24, 16, "down") || hit(7, 25, 16, "down") || hit(7, 24, 19, "up") || hit(7, 25, 19, "up"))
             interactObject(36); // komputer
         else if (hit(7, 27, 16, "down") || hit(7, 27, 19, "up"))
             interactObject(37); // komputer
-            
+
         else if (hit(7, 31, 26, "up") || hit(7, 32, 26, "up") || hit(7, 33, 26, "up") || hit(7, 34, 26, "up"))
             interactObject(38); // lemari
 
-        else if (hit(7, 34, 26, "right") || hit(7, 34, 27, "right") || hit(7, 34, 28, "right") || hit(7, 34, 29, "right") || hit(7, 34, 30, "right") || hit(7, 35, 31, "up") || hit(7, 36, 31, "up") || hit(7, 37, 31, "up"))
+        else if (hit(7, 34, 26, "right") || hit(7, 34, 27, "right") || hit(7, 34, 28, "right")
+                || hit(7, 34, 29, "right") || hit(7, 34, 30, "right") || hit(7, 35, 31, "up") || hit(7, 36, 31, "up")
+                || hit(7, 37, 31, "up"))
             interactObject(39); // kolam
-        
+
         else if (hit(10, 35, 23, "right") || hit(10, 35, 24, "right") || hit(10, 36, 25, "up") || hit(10, 37, 25, "up"))
             healingPool(); // healing monster01
         else if (hit(11, 33, 23, "up") || hit(10, 34, 23, "up"))
             healingPool(); // healing monster02
         else if (hit(12, 13, 24, "up") || hit(10, 14, 24, "up"))
             healingPool(); // healing monster03
-        
+
         else if (hit(4, 29, 26, "right") || hit(4, 29, 27, "right") || hit(4, 29, 28, "right")) {
             dangerousAreaWarning(4, 29, 26, 40);
             dangerousAreaWarning(4, 29, 27, 40);
             dangerousAreaWarning(4, 29, 28, 40);
         }
-        
+
         else if (hit(4, 30, 26, "right") || hit(4, 30, 27, "right") || hit(4, 30, 28, "right")) {
             dangerousAreaWarning(4, 30, 26, 41);
             dangerousAreaWarning(4, 30, 27, 41);
             dangerousAreaWarning(4, 30, 28, 41);
         }
-        
+
         else if (hit(4, 31, 26, "right") || hit(4, 31, 27, "right") || hit(4, 31, 28, "right")) {
             dangerousAreaWarning(4, 31, 26, 42);
             dangerousAreaWarning(4, 31, 27, 42);
             dangerousAreaWarning(4, 31, 28, 42);
         }
-            
+
         else if (hit(4, 32, 26, "right") || hit(4, 32, 27, "right") || hit(4, 32, 28, "right")) {
             dangerousAreaWarning(4, 32, 26, 43);
             dangerousAreaWarning(4, 32, 27, 43);
@@ -606,7 +613,8 @@ public class EventHandler {
             eventMaster.startDialogue(eventMaster, 1);
             gamePanel.player.life = gamePanel.player.maxLife;
             gamePanel.player.mana = gamePanel.player.maxMana;
-            // gamePanel.assetSetter.setMonster(); // optional for testing purpose. reset monster
+            // gamePanel.assetSetter.setMonster(); // optional for testing purpose. reset
+            // monster
             gamePanel.saveLoad.save();
         }
     }
