@@ -1,7 +1,5 @@
 package com.zkylab.entity;
 
-import java.util.Random;
-
 import com.zkylab.common.GamePanel;
 
 public class NPC_Professor extends Entity {

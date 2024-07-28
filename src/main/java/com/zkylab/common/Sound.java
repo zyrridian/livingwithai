@@ -1,7 +1,5 @@
 package com.zkylab.common;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
 import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
@@ -59,23 +57,7 @@ public class Sound {
                 floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
                 checkVolume();
             } else if (soundURL[i].toString().endsWith(".ogg")) {
-                // TODO: Add JOrbis and JLayer to your project:
-                // Ogg file handling
-                // InputStream in = soundURL[i].openStream();
-                // Bitstream bitstream = new Bitstream(new BufferedInputStream(in));
-                // AdvancedPlayer player = new AdvancedPlayer(bitstream);
-                // player.setPlayBackListener(new PlaybackListener() {
-                //     public void playbackFinished(PlaybackEvent evt) {
-                //         // Handle end of playback
-                //     }
-                // });
-                // new Thread(() -> {
-                //     try {
-                //         player.play();
-                //     } catch (JavaLayerException e) {
-                //         e.printStackTrace();
-                //     }
-                // }).start();
+                // handling ogg music, but later. idk how to do it.
             }
         } catch (Exception e) {
             e.printStackTrace();

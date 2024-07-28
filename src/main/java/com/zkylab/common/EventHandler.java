@@ -256,9 +256,9 @@ public class EventHandler {
      */
     public void checkEvent() {
         // Check if the player character is more than 1 tile away from the last event
-        int xDistance = Math.abs(gamePanel.player.worldX - previousEventX);
-        int yDistance = Math.abs(gamePanel.player.worldY - previousEventY);
-        int distance = Math.max(xDistance, yDistance);
+        // int xDistance = Math.abs(gamePanel.player.worldX - previousEventX);
+        // int yDistance = Math.abs(gamePanel.player.worldY - previousEventY);
+        // int distance = Math.max(xDistance, yDistance);
 
         // if (distance > gamePanel.tileSize) {
         canTouchEvent = true;
@@ -274,25 +274,9 @@ public class EventHandler {
      * Handles specific events based on player interactions with event rectangles.
      */
     private void handleEvents() {
-        // Check for damage pits
-        if (hit(0, 27, 16, "right"))
-            damagePit(27, 16, GamePanel.DIALOGUE_STATE);
-
-        // Check for healing pools
-        else if (hit(0, 17, 15, "up") || hit(0, 18, 15, "up") || hit(0, 19, 15, "up") ||
-                hit(0, 20, 15, "up") || hit(0, 21, 15, "up") || hit(0, 22, 15, "up") ||
-                hit(0, 23, 15, "up"))
-            healingPool();
-
-        // Check for NPC interactions
-        else if (hit(1, 12, 9, "up"))
-            speak(gamePanel.npc[1][0]);
-
-        else if (hit(3, 25, 27, "any"))
-            skeletonLord();
-
+        
         // ========== EVENT TELEPORT ========== //
-        else if (hit(0, 28, 14, "up") || hit(0, 29, 14, "up"))
+        if (hit(0, 28, 14, "up") || hit(0, 29, 14, "up"))
             teleport(1, 26, 31, GamePanel.OUTSIDE_AREA); // Teleport kota 1 ke kota 2
         else if (hit(0, 36, 19, "right") || hit(0, 36, 20, "right"))
             teleport(4, 18, 26, GamePanel.OUTSIDE_AREA); // Teleport kota 1 ke kota 5
@@ -346,9 +330,6 @@ public class EventHandler {
         else if (hit(3, 19, 29, "up"))
             interactObject(2);
 
-        // else if (hit(4, 33, 26, "right") || hit(4, 33, 27, "right") || hit(4, 33, 28, "right"))
-        //     autoDialog(4, 33, 26, GamePanel.DIALOGUE_STATE, 6);
-
         // ========== STUDIO EVENTS ========== //
         else if (hit(0, 23, 19, "up"))
             openTheDoor(8, 28, 42, GamePanel.INDOOR_AREA); // Teleport kota 1 ke studio 1
@@ -397,20 +378,6 @@ public class EventHandler {
                 || hit(1, 21, 23, "left") || hit(1, 21, 24, "left") || hit(1, 21, 26, "left") || hit(1, 21, 27, "left")
                 || hit(1, 24, 23, "left") || hit(1, 24, 24, "left") || hit(1, 24, 26, "left") || hit(1, 24, 27, "left"))
             interactObject(13); // air mancur kota 2
-
-        // loadMap("/maps/kota01.txt", 0);
-        // loadMap("/maps/kota02.txt", 1);
-        // loadMap("/maps/kota03.txt", 2);
-        // loadMap("/maps/kota04.txt", 3);
-        // loadMap("/maps/kota05.txt", 4);
-        // loadMap("/maps/utama.txt", 5);
-        // loadMap("/maps/dapur.txt", 6);
-        // loadMap("/maps/perpustakaan.txt", 7);
-        // loadMap("/maps/studio01.txt", 8);
-        // loadMap("/maps/perpustakaan.txt", 9);
-        // loadMap("/maps/monster01.txt", 10);
-        // loadMap("/maps/monster02.txt", 11);
-        // loadMap("/maps/monster03.txt", 12);
 
         // ========== MONSTER MAP EVENTS ========== //
         else if (hit(4, 33, 26, "right") || hit(4, 33, 27, "right") || hit(4, 33, 28, "right"))

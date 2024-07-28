@@ -17,9 +17,9 @@ public class SaveLoad {
     }
 
     public void save() {
+        ObjectOutputStream outputStream = null;
         try {
-
-            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+            outputStream = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
 
             // Player stats
             DataStorage dStorage = new DataStorage();
@@ -77,13 +77,21 @@ public class SaveLoad {
 
         } catch (Exception e) {
             System.out.println("Save Exception!");
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (Exception e) {
+                    System.out.println("Exception while closing OutputStream!");
+                }
+            }
         }
     }
 
     public void load() {
+        ObjectInputStream oInputStream = null;
         try {
-
-            ObjectInputStream oInputStream = new ObjectInputStream(new FileInputStream(new File("save.dat")));
+            oInputStream = new ObjectInputStream(new FileInputStream(new File("save.dat")));
             
             // Read the DataStorage object
             DataStorage dStorage = (DataStorage) oInputStream.readObject();
@@ -139,6 +147,14 @@ public class SaveLoad {
 
         } catch (Exception e) {
             System.out.println("Load Exception!");
+        } finally {
+            if (oInputStream != null) {
+                try {
+                    oInputStream.close();
+                } catch (Exception e) {
+                    System.out.println("Exception while closing InputStream!");
+                }
+            }
         }
     }
     
