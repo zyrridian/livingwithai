@@ -16,7 +16,7 @@ public class OBJ_Tent extends Entity {
         name = objName;
         down1 = setup("/objects/tent", gamePanel.tileSize, gamePanel.tileSize);
         description = "[Tent]\nDapat tidur hingga pagi.";
-        price = 300;
+        price = 100;
         stackable = true;
     }
 

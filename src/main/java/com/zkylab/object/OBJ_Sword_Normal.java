@@ -5,7 +5,7 @@ import com.zkylab.entity.Entity;
 
 public class OBJ_Sword_Normal extends Entity {
     
-    public static final String objName = "Pedang normal";
+    public static final String objName = "Pedang Normal";
 
     public OBJ_Sword_Normal(GamePanel gamePanel) {
         super(gamePanel);

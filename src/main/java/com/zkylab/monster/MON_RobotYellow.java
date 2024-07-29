@@ -23,11 +23,11 @@ public class MON_RobotYellow extends Entity {
         name = "Robot Yellow";
         defaultSpeed = 3;
         speed = defaultSpeed;
-        maxLife = 5;
+        maxLife = 15;
         life = maxLife;
-        attack = 5;
-        defense = 3;
-        exp = 10;
+        attack = 2;
+        defense = 2;
+        exp = 15;
         projectile = new OBJ_Rock(gamePanel);
 
         solidArea.x = 9;

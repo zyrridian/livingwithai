@@ -10,7 +10,7 @@ import com.zkylab.common.KeyHandler;
 import com.zkylab.object.OBJ_Fireball;
 import com.zkylab.object.OBJ_Key;
 import com.zkylab.object.OBJ_Lantern;
-import com.zkylab.object.OBJ_Shield_Wood;
+import com.zkylab.object.OBJ_Shield_Normal;
 import com.zkylab.object.OBJ_Sword_Normal;
 import com.zkylab.object.OBJ_Tent;
 
@@ -73,9 +73,9 @@ public class Player extends Entity {
         dexterity = 1;
         exp = 1;
         nextLevelExp = 5;
-        coin = 500;
+        coin = 0;
         currentWeapon = new OBJ_Sword_Normal(gamePanel);
-        currentShield = new OBJ_Shield_Wood(gamePanel);
+        currentShield = new OBJ_Shield_Normal(gamePanel);
         currentLight = null;
         projectile = new OBJ_Fireball(gamePanel);
         attack = getAttack();
@@ -224,6 +224,12 @@ public class Player extends Entity {
         if (currentWeapon.type == type_sword) {
             loadSwordAttackImages();
         }
+        if (currentWeapon.type == type_sword_super) {
+            loadSwordSuperImages();
+        }
+        if (currentWeapon.type == type_sword_god) {
+            loadSwordGodImages();
+        }
         if (currentWeapon.type == type_axe) {
             loadAxeAttackImages();
         }
@@ -241,6 +247,28 @@ public class Player extends Entity {
         attackLeft2 = setup("/player/mc_attack_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
         attackRight1 = setup("/player/mc_attack_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
         attackRight2 = setup("/player/mc_attack_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+    }
+
+    private void loadSwordSuperImages() {
+        attackUp1 = setup("/player/mc_attacksuper_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackUp2 = setup("/player/mc_attacksuper_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown1 = setup("/player/mc_attacksuper_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown2 = setup("/player/mc_attacksuper_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackLeft1 = setup("/player/mc_attacksuper_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackLeft2 = setup("/player/mc_attacksuper_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight1 = setup("/player/mc_attacksuper_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight2 = setup("/player/mc_attacksuper_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+    }
+
+    private void loadSwordGodImages() {
+        attackUp1 = setup("/player/mc_attackgod_up_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackUp2 = setup("/player/mc_attackgod_up_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown1 = setup("/player/mc_attackgod_down_1", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackDown2 = setup("/player/mc_attackgod_down_2", gamePanel.tileSize, gamePanel.tileSize * 2);
+        attackLeft1 = setup("/player/mc_attackgod_left_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackLeft2 = setup("/player/mc_attackgod_left_2", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight1 = setup("/player/mc_attackgod_right_1", gamePanel.tileSize * 2, gamePanel.tileSize);
+        attackRight2 = setup("/player/mc_attackgod_right_2", gamePanel.tileSize * 2, gamePanel.tileSize);
     }
 
     private void loadAxeAttackImages() {
@@ -269,10 +297,36 @@ public class Player extends Entity {
      * Loads the player's guarding images.
      */
     public void getGuardImage() {
+        if (currentShield.type == type_shield) {
+            loadShieldNormal();
+        }
+        if (currentShield.type == type_shield_super) {
+            loadShieldSuper();
+        }
+        if (currentShield.type == type_shield_god) {
+            loadShieldGod();
+        }
+    }
+
+    public void loadShieldNormal() {
         guardUp = setup("/player/mc_guard_up", gamePanel.tileSize, gamePanel.tileSize);
         guardDown = setup("/player/mc_guard_down", gamePanel.tileSize, gamePanel.tileSize);
         guardLeft = setup("/player/mc_guard_left", gamePanel.tileSize, gamePanel.tileSize);
         guardRight = setup("/player/mc_guard_right", gamePanel.tileSize, gamePanel.tileSize);
+    }
+
+    public void loadShieldSuper() {
+        guardUp = setup("/player/mc_guardsuper_up", gamePanel.tileSize, gamePanel.tileSize);
+        guardDown = setup("/player/mc_guardsuper_down", gamePanel.tileSize, gamePanel.tileSize);
+        guardLeft = setup("/player/mc_guardsuper_left", gamePanel.tileSize, gamePanel.tileSize);
+        guardRight = setup("/player/mc_guardsuper_right", gamePanel.tileSize, gamePanel.tileSize);
+    }
+
+    public void loadShieldGod() {
+        guardUp = setup("/player/mc_guardgod_up", gamePanel.tileSize, gamePanel.tileSize);
+        guardDown = setup("/player/mc_guardgod_down", gamePanel.tileSize, gamePanel.tileSize);
+        guardLeft = setup("/player/mc_guardgod_left", gamePanel.tileSize, gamePanel.tileSize);
+        guardRight = setup("/player/mc_guardgod_right", gamePanel.tileSize, gamePanel.tileSize);
     }
 
     /**
@@ -514,8 +568,16 @@ public class Player extends Entity {
                 gamePanel.playSoundEffect(9);
 
                 int damage = gamePanel.monster[gamePanel.currentMap][i].attack - defense;
-                if (damage < 1)
+                if (damage < 1 && (currentShield.type == type_shield || currentShield.type == type_shield_super)) {
                     damage = 1;
+                }
+
+                // if shield god or super
+                if (gamePanel.player.currentShield.type == type_shield_super) {
+                    damage = 1;
+                } else if (gamePanel.player.currentShield.type == type_shield_god) {
+                    damage = 0;
+                }
 
                 life -= damage;
                 invincible = true;
@@ -527,7 +589,7 @@ public class Player extends Entity {
 
     public void damageMonster(int i, Entity attacker, int attack, int knockBackPower) {
         if (i != 999) {
-            if (!gamePanel.monster[gamePanel.currentMap][i].invincible) {
+            if (!gamePanel.monster[gamePanel.currentMap][i].invincible || currentWeapon.type == type_sword_god) {
 
                 gamePanel.playSoundEffect(8);
 
@@ -544,6 +606,10 @@ public class Player extends Entity {
                 int damage = attack - gamePanel.monster[gamePanel.currentMap][i].defense;
                 if (damage < 0)
                     damage = 0;
+
+                if (currentWeapon.type == type_sword_god) {
+                    damage = 1;
+                }
 
                 gamePanel.monster[gamePanel.currentMap][i].life -= damage;
                 gamePanel.ui.addMessage(damage + " damage!");
@@ -614,14 +680,15 @@ public class Player extends Entity {
         int itemIndex = gamePanel.ui.getItemIndexOnSlot(gamePanel.ui.playerSlotCol, gamePanel.ui.playerSlotRow);
         if (itemIndex < inventory.size()) { // If user is not select a blank slot
             Entity selectedItem = inventory.get(itemIndex);
-            if (selectedItem.type == type_sword || selectedItem.type == type_axe || selectedItem.type == type_pickaxe) {
+            if (selectedItem.type == type_sword || selectedItem.type == type_sword_super || selectedItem.type == type_sword_god || selectedItem.type == type_axe || selectedItem.type == type_pickaxe) {
                 currentWeapon = selectedItem;
                 attack = getAttack();
                 getAttackImage();
             }
-            if (selectedItem.type == type_shield) {
+            if (selectedItem.type == type_shield || selectedItem.type == type_shield_super || selectedItem.type == type_shield_god) {
                 currentShield = selectedItem;
                 defense = getDefense();
+                getGuardImage();
             }
             if (selectedItem.type == type_light) {
                 if (currentLight == selectedItem) {

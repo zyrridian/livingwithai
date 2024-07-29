@@ -13,8 +13,8 @@ public class OBJ_Lantern extends Entity {
         type = type_light;
         name = objName;
         down1 = setup("/objects/lantern", gamePanel.tileSize, gamePanel.tileSize);
-        description = "[Lantern]\nMengerangi keadaan\nsekitarmu.";
-        price = 200;
+        description = "[Lantern]\nMenerangi keadaan\nsekitarmu.";
+        price = 150;
         lightRadius = 300;
     }
     

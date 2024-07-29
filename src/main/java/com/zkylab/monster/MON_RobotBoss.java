@@ -1,14 +1,9 @@
 package com.zkylab.monster;
 
-import java.util.Random;
-
 import com.zkylab.common.GamePanel;
 import com.zkylab.data.Progress;
 import com.zkylab.entity.Entity;
-import com.zkylab.object.OBJ_Coin_Bronze;
-import com.zkylab.object.OBJ_DoorIron;
-import com.zkylab.object.OBJ_Heart;
-import com.zkylab.object.OBJ_Mana_Crystal;
+import com.zkylab.object.OBJ_Coin_Red;
 
 public class MON_RobotBoss extends Entity {
     
@@ -25,7 +20,13 @@ public class MON_RobotBoss extends Entity {
         name = monName;
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 200;
+        if (gamePanel.player.currentWeapon.type == type_sword_super) {
+            maxLife = 1000;
+        } else if (gamePanel.player.currentWeapon.type == type_sword_god) {
+            maxLife = 100;
+        } else {
+            maxLife = 200;
+        }
         life = maxLife;
         attack = 10;
         defense = 10;
@@ -159,24 +160,25 @@ public class MON_RobotBoss extends Entity {
         Progress.skeletonLordDefeated = true;
         
         // Restore the previous music
-        gamePanel.stopMusic();
-        gamePanel.playMusic(7);
+        // gamePanel.stopMusic();
+        // gamePanel.playMusic(7);sssw
 
         // Remove the iron doors
-        for (int i = 0; i < gamePanel.obj[1].length; i++) {
-            if (gamePanel.obj[gamePanel.currentMap][i] != null && gamePanel.obj[gamePanel.currentMap][i].name.equals(OBJ_DoorIron.objName)) {
+        // for (int i = 0; i < gamePanel.obj[1].length; i++) {
+        //     if (gamePanel.obj[gamePanel.currentMap][i] != null && gamePanel.obj[gamePanel.currentMap][i].name.equals(OBJ_DoorIron.objName)) {
                 gamePanel.playSoundEffect(20);
-                gamePanel.obj[gamePanel.currentMap][i] = null;
-            }
-        }
+                // gamePanel.obj[gamePanel.currentMap][i] = null;
+        //     }
+        // }
         
         // Cast a die
-        int i = new Random().nextInt(100) + 1;
+        // int i = new Random().nextInt(100) + 1;
 
         // Set the monster drop
-        if (i < 50) dropItem(new OBJ_Coin_Bronze(gamePanel));
-        if (i >= 50 && i < 75) dropItem(new OBJ_Heart(gamePanel));
-        if (i >= 75 && i < 100) dropItem(new OBJ_Mana_Crystal(gamePanel));
+        // if (i < 50) dropItem(new OBJ_Coin_Bronze(gamePanel));
+        // if (i >= 50 && i < 75) dropItem(new OBJ_Heart(gamePanel));
+        // if (i >= 75 && i < 100) dropItem(new OBJ_Mana_Crystal(gamePanel));
+        dropItem(new OBJ_Coin_Red(gamePanel));
 
     }
 

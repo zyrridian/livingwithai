@@ -721,7 +721,7 @@ public class UI {
         g2.drawString("Atk", textX, textY); textY += lineHeight;
         g2.drawString("Def", textX, textY); textY += lineHeight;
         g2.drawString("Exp", textX, textY); textY += lineHeight;
-        g2.drawString("Level Selanjutnya", textX, textY); textY += lineHeight;
+        g2.drawString("Next Level", textX, textY); textY += lineHeight;
         g2.drawString("Koin", textX, textY); textY += lineHeight + 8;
         g2.drawString("Senjata", textX, textY); textY += lineHeight + 15;
         g2.drawString("Perisai", textX, textY); textY += lineHeight;

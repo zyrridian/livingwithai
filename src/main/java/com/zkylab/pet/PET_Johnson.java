@@ -4,8 +4,11 @@ package com.zkylab.pet;
 import com.zkylab.common.GamePanel;
 import com.zkylab.entity.Entity;
 import com.zkylab.object.OBJ_Key;
+import com.zkylab.object.OBJ_Lantern;
 import com.zkylab.object.OBJ_Potion_Red;
-import com.zkylab.object.OBJ_Shield_Blue;
+import com.zkylab.object.OBJ_Shield_God;
+import com.zkylab.object.OBJ_Shield_Super;
+import com.zkylab.object.OBJ_Sword_God;
 import com.zkylab.object.OBJ_Sword_Super;
 import com.zkylab.object.OBJ_Tent;
 
@@ -67,8 +70,11 @@ public class PET_Johnson extends Entity {
         inventory.add(new OBJ_Potion_Red(gamePanel));
         inventory.add(new OBJ_Key(gamePanel));
         inventory.add(new OBJ_Tent(gamePanel));
+        inventory.add(new OBJ_Lantern(gamePanel));
         inventory.add(new OBJ_Sword_Super(gamePanel));
-        inventory.add(new OBJ_Shield_Blue(gamePanel));
+        inventory.add(new OBJ_Shield_Super(gamePanel));
+        inventory.add(new OBJ_Sword_God(gamePanel));
+        inventory.add(new OBJ_Shield_God(gamePanel));
     }
 
     public void speak() {

@@ -25,7 +25,7 @@ public class MON_RobotWhite extends Entity {
         speed = defaultSpeed;
         maxLife = 5;
         life = maxLife;
-        attack = 5;
+        attack = 1;
         defense = 0;
         exp = 2;
         projectile = new OBJ_Rock(gamePanel);

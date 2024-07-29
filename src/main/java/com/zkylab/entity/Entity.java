@@ -127,6 +127,10 @@ public class Entity {
     public final int type_obstacle = 8;
     public final int type_light = 9;
     public final int type_pickaxe = 10;
+    public final int type_sword_super = 50;
+    public final int type_sword_god = 51;
+    public final int type_shield_super = 52;
+    public final int type_shield_god = 53;
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -578,8 +582,16 @@ public class Entity {
                 }
             } else {
                 gamePanel.playSoundEffect(9);
-                if (damage < 1)
+                if (damage < 1) {
                     damage = 1;
+                }
+            }
+
+            // if shield god or super
+            if (gamePanel.player.currentShield.type == type_shield_super) {
+                damage = 1;
+            } else if (gamePanel.player.currentShield.type == type_shield_god) {
+                damage = 0;
             }
 
             // If monster gives player damage

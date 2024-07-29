@@ -3,18 +3,18 @@ package com.zkylab.object;
 import com.zkylab.common.GamePanel;
 import com.zkylab.entity.Entity;
 
-public class OBJ_Coin_Bronze extends Entity {
+public class OBJ_Coin_Red extends Entity {
 
     GamePanel gamePanel;
-    public static final String objName = "Koin";
+    public static final String objName = "Koin merah";
 
-    public OBJ_Coin_Bronze(GamePanel gamePanel) {
+    public OBJ_Coin_Red(GamePanel gamePanel) {
         super(gamePanel);
         this.gamePanel = gamePanel;
         type = type_pickupOnly;
         name = objName;
-        value = 20;
-        down1 = setup("/objects/coin_bronze", gamePanel.tileSize, gamePanel.tileSize);
+        value = 100;
+        down1 = setup("/objects/coin_red", gamePanel.tileSize, gamePanel.tileSize);
     }
 
     public boolean use(Entity entity) {

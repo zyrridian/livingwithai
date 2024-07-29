@@ -23,10 +23,10 @@ public class MON_RobotCube extends Entity {
         name = "Robot Cube";
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 5;
+        maxLife = 7;
         life = maxLife;
-        attack = 5;
-        defense = 0;
+        attack = 1;
+        defense = 1;
         exp = 5;
         projectile = new OBJ_Rock(gamePanel);
 

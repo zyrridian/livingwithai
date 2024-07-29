@@ -23,11 +23,11 @@ public class MON_RobotBrown extends Entity {
         name = "Robot Brown";
         defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 20;
+        maxLife = 30;
         life = maxLife;
         attack = 5;
         defense = 0;
-        exp = 15;
+        exp = 20;
         projectile = new OBJ_Rock(gamePanel);
 
         solidArea.x = 9;

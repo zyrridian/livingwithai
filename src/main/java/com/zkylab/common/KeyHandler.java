@@ -232,6 +232,8 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.commandNumber == 0) {
                 gamePanel.currentMusicIndex = 0;
                 gamePanel.eventHandler.teleport(0, 11, 20, GamePanel.OUTSIDE_AREA);
+                // gamePanel.saveLoad.load();
+                // gamePanel.gameState = GamePanel.PLAY_STATE;
                 gamePanel.resetGame(false);
                 gamePanel.playMusic(22);
             } else if (gamePanel.ui.commandNumber == 1) {
