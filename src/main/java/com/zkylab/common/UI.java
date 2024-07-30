@@ -1155,7 +1155,13 @@ public class UI {
             g2.drawString(">", textX - 25, textY);
             if (gamePanel.keyHandler.enterPressed) {
                 subState = 0;
-                gamePanel.stopMusic();
+                if (gamePanel.currentArea == GamePanel.OUTSIDE_AREA) {
+                    gamePanel.stopMusic(22);
+                } else if (gamePanel.currentArea == GamePanel.INDOOR_AREA) {
+                    gamePanel.stopMusic(23);
+                } else if (gamePanel.currentArea == GamePanel.DUNGEON_AREA) {
+                    gamePanel.stopMusic(7);
+                }
                 titleScreenState = 1;
                 gamePanel.gameState = GamePanel.TITLE_STATE;
                 gamePanel.resetGame(true);

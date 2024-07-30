@@ -10,6 +10,7 @@ import javax.sound.sampled.FloatControl;
 public class Sound {
     
     Clip clip;
+    Clip[] clips = new Clip[30];
     URL soundURL[] = new URL[30];
     FloatControl floatControl;
     int volumeScale = 3;
@@ -46,34 +47,54 @@ public class Sound {
         soundURL[24] = getClass().getResource("/sounds/MainThemeNeutral.wav");
         soundURL[25] = getClass().getResource("/sounds/dead.wav");
         // soundURL[23] = getClass().getResource("/sounds/Credit.wav");
-    }
 
-    public void setFile(int i) {
-        try {
-            if (soundURL[i].toString().endsWith(".wav")) {
-                AudioInputStream audio = AudioSystem.getAudioInputStream(soundURL[i]);
-                clip = AudioSystem.getClip();
-                clip.open(audio);
-                floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                checkVolume();
-            } else if (soundURL[i].toString().endsWith(".ogg")) {
-                // handling ogg music, but later. idk how to do it.
+        // Load all sound clips at initialization
+        for (int i = 0; i < soundURL.length; i++) {
+            if (soundURL[i] != null) {
+                try {
+                    AudioInputStream audio = AudioSystem.getAudioInputStream(soundURL[i]);
+                    clips[i] = AudioSystem.getClip();
+                    clips[i].open(audio);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    public void play() {
-        clip.start();
+    // public void setFile(int i) {
+    //     try {
+    //         if (soundURL[i].toString().endsWith(".wav")) {
+    //             AudioInputStream audio = AudioSystem.getAudioInputStream(soundURL[i]);
+    //             clip = AudioSystem.getClip();
+    //             clip.open(audio);
+    //             floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+    //             checkVolume();
+    //         } else if (soundURL[i].toString().endsWith(".ogg")) {
+    //             // handling ogg music, but later. idk how to do it.
+    //         }
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+
+    public void play(int i) {
+        if (clips[i] != null) {
+            clips[i].setFramePosition(0); // rewind to the beginning
+            clips[i].start();   
+        }
     }
 
-    public void loop() {
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+    public void loop(int i) {
+        if (clips[i] != null) {
+            clips[i].loop(Clip.LOOP_CONTINUOUSLY);   
+        }
     }
 
-    public void stop() {
-        clip.stop();
+    public void stop(int i) {
+        if (clips[i] != null) {
+            clips[i].stop();
+        }
     }
 
     public void checkVolume() {

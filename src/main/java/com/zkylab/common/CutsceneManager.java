@@ -51,8 +51,8 @@ public class CutsceneManager {
         this.g2 = g2;
 
         switch (sceneNumber) {
-            case skeletonLord: scene_skeletonLord(); break;
-            case ending: scene_ending(); break;
+            // case skeletonLord: scene_skeletonLord(); break;
+            // case ending: scene_ending(); break;
             case opening: scene_opening(); break;
         }
     }
@@ -133,182 +133,182 @@ public class CutsceneManager {
     //     }
     // }
 
-    public void scene_skeletonLord() {
+    // public void scene_skeletonLord() {
 
-        // Shut the iron door
-        if (scenePhase == 0) {
-            gamePanel.bossBattleOn = true;
-            for (int i = 0; i < gamePanel.obj[1].length; i++) {
-                if (gamePanel.obj[gamePanel.currentMap][i] == null) {
-                    gamePanel.obj[gamePanel.currentMap][i] = new OBJ_DoorIron(gamePanel);
-                    gamePanel.obj[gamePanel.currentMap][i].worldX = gamePanel.tileSize * 25;
-                    gamePanel.obj[gamePanel.currentMap][i].worldY = gamePanel.tileSize * 28;
-                    gamePanel.obj[gamePanel.currentMap][i].temp = true; // To delete temporary door later
-                    gamePanel.playSoundEffect(20);
-                    break;
-                }
-            }
-            // Search a vacant slot for the dummy
-            for (int i = 0; i < gamePanel.npc[1].length; i++) {
-                if (gamePanel.npc[gamePanel.currentMap][i] == null) {
-                    gamePanel.npc[gamePanel.currentMap][i] = new PlayerDummy(gamePanel);
-                    gamePanel.npc[gamePanel.currentMap][i].worldX = gamePanel.player.worldX;
-                    gamePanel.npc[gamePanel.currentMap][i].worldY = gamePanel.player.worldY;
-                    gamePanel.npc[gamePanel.currentMap][i].direction = gamePanel.player.direction;
-                    break;
-                }
-            }
+    //     // Shut the iron door
+    //     if (scenePhase == 0) {
+    //         gamePanel.bossBattleOn = true;
+    //         for (int i = 0; i < gamePanel.obj[1].length; i++) {
+    //             if (gamePanel.obj[gamePanel.currentMap][i] == null) {
+    //                 gamePanel.obj[gamePanel.currentMap][i] = new OBJ_DoorIron(gamePanel);
+    //                 gamePanel.obj[gamePanel.currentMap][i].worldX = gamePanel.tileSize * 25;
+    //                 gamePanel.obj[gamePanel.currentMap][i].worldY = gamePanel.tileSize * 28;
+    //                 gamePanel.obj[gamePanel.currentMap][i].temp = true; // To delete temporary door later
+    //                 gamePanel.playSoundEffect(20);
+    //                 break;
+    //             }
+    //         }
+    //         // Search a vacant slot for the dummy
+    //         for (int i = 0; i < gamePanel.npc[1].length; i++) {
+    //             if (gamePanel.npc[gamePanel.currentMap][i] == null) {
+    //                 gamePanel.npc[gamePanel.currentMap][i] = new PlayerDummy(gamePanel);
+    //                 gamePanel.npc[gamePanel.currentMap][i].worldX = gamePanel.player.worldX;
+    //                 gamePanel.npc[gamePanel.currentMap][i].worldY = gamePanel.player.worldY;
+    //                 gamePanel.npc[gamePanel.currentMap][i].direction = gamePanel.player.direction;
+    //                 break;
+    //             }
+    //         }
 
-            gamePanel.player.drawing = false;
-            scenePhase++;
-        }
+    //         gamePanel.player.drawing = false;
+    //         scenePhase++;
+    //     }
 
-        // Moving the camera upward and use dummy player (above this code) image because the current player image is invincible
-        if (scenePhase == 1) {
-            gamePanel.player.worldY -= 2;
-            if (gamePanel.player.worldY < gamePanel.tileSize * 16) {
-                scenePhase++;
-            }
-        }
+    //     // Moving the camera upward and use dummy player (above this code) image because the current player image is invincible
+    //     if (scenePhase == 1) {
+    //         gamePanel.player.worldY -= 2;
+    //         if (gamePanel.player.worldY < gamePanel.tileSize * 16) {
+    //             scenePhase++;
+    //         }
+    //     }
 
-        // Wake up the boss and search the boss
-        if (scenePhase == 2) {
-            for (int i = 0; i < gamePanel.monster[1].length; i++) {
-                if (gamePanel.monster[gamePanel.currentMap][i] != null &&
-                    gamePanel.monster[gamePanel.currentMap][i].name.equals(MON_SkeletonLord.monName)
-                ) {
-                    gamePanel.monster[gamePanel.currentMap][i].sleep = false;
-                    gamePanel.ui.npc = gamePanel.monster[gamePanel.currentMap][i];
-                    scenePhase++;
-                    break;
-                }
-            }
+    //     // Wake up the boss and search the boss
+    //     if (scenePhase == 2) {
+    //         for (int i = 0; i < gamePanel.monster[1].length; i++) {
+    //             if (gamePanel.monster[gamePanel.currentMap][i] != null &&
+    //                 gamePanel.monster[gamePanel.currentMap][i].name.equals(MON_SkeletonLord.monName)
+    //             ) {
+    //                 gamePanel.monster[gamePanel.currentMap][i].sleep = false;
+    //                 gamePanel.ui.npc = gamePanel.monster[gamePanel.currentMap][i];
+    //                 scenePhase++;
+    //                 break;
+    //             }
+    //         }
             
-        }
+    //     }
 
-        // Boss speak
-        if (scenePhase == 3) {
-            gamePanel.ui.drawDialogueScreen();
-        }
+    //     // Boss speak
+    //     if (scenePhase == 3) {
+    //         gamePanel.ui.drawDialogueScreen();
+    //     }
 
-        // Return camera to the player
-        if (scenePhase == 4) {
+    //     // Return camera to the player
+    //     if (scenePhase == 4) {
             
-            // Remove the dummy
-            for (int i = 0; i < gamePanel.npc[1].length; i++) {
-                if (gamePanel.npc[gamePanel.currentMap][i] != null &&
-                    gamePanel.npc[gamePanel.currentMap][i].name == PlayerDummy.npcName
-                ) {
-                    // Restore player position
-                    gamePanel.player.worldX = gamePanel.npc[gamePanel.currentMap][i].worldX;
-                    gamePanel.player.worldY = gamePanel.npc[gamePanel.currentMap][i].worldY;
-                    gamePanel.npc[gamePanel.currentMap][i] = null;
-                    break;
-                }
-            }
+    //         // Remove the dummy
+    //         for (int i = 0; i < gamePanel.npc[1].length; i++) {
+    //             if (gamePanel.npc[gamePanel.currentMap][i] != null &&
+    //                 gamePanel.npc[gamePanel.currentMap][i].name == PlayerDummy.npcName
+    //             ) {
+    //                 // Restore player position
+    //                 gamePanel.player.worldX = gamePanel.npc[gamePanel.currentMap][i].worldX;
+    //                 gamePanel.player.worldY = gamePanel.npc[gamePanel.currentMap][i].worldY;
+    //                 gamePanel.npc[gamePanel.currentMap][i] = null;
+    //                 break;
+    //             }
+    //         }
 
-            // Start drawing the player
-            gamePanel.player.drawing = true;
+    //         // Start drawing the player
+    //         gamePanel.player.drawing = true;
 
-            // Reset
-            sceneNumber = NA;
-            scenePhase = 0;
-            gamePanel.gameState = GamePanel.PLAY_STATE;
+    //         // Reset
+    //         sceneNumber = NA;
+    //         scenePhase = 0;
+    //         gamePanel.gameState = GamePanel.PLAY_STATE;
 
-            // Change the music
-            gamePanel.stopMusic();
-            gamePanel.playMusic(21);
+    //         // Change the music
+    //         gamePanel.stopMusic();
+    //         gamePanel.playMusic(21);
 
-        }
-    }
+    //     }
+    // }
 
-    public void scene_ending() {
+    // public void scene_ending() {
 
-        // Stop music
-        if (scenePhase == 0) {
-            gamePanel.stopMusic();
-            gamePanel.ui.npc = new OBJ_BlueHeart(gamePanel);
-            scenePhase++;
-        }
+    //     // Stop music
+    //     if (scenePhase == 0) {
+    //         gamePanel.stopMusic();
+    //         gamePanel.ui.npc = new OBJ_BlueHeart(gamePanel);
+    //         scenePhase++;
+    //     }
 
-        // Display dialogues
-        if (scenePhase == 1) {
-            gamePanel.ui.drawDialogueScreen();
-        }
+    //     // Display dialogues
+    //     if (scenePhase == 1) {
+    //         gamePanel.ui.drawDialogueScreen();
+    //     }
 
-        // Play the fanfare
-        if (scenePhase == 2) {
-            gamePanel.playSoundEffect(4);
-            scenePhase++;
-        }
+    //     // Play the fanfare
+    //     if (scenePhase == 2) {
+    //         gamePanel.playSoundEffect(4);
+    //         scenePhase++;
+    //     }
 
-        // Wait until the sound effect ends
-        if (scenePhase == 3) {
-            if (counterReached(300)) {
-                scenePhase++;
-            }
-        }
+    //     // Wait until the sound effect ends
+    //     if (scenePhase == 3) {
+    //         if (counterReached(300)) {
+    //             scenePhase++;
+    //         }
+    //     }
 
-        // Scene gradually darker
-        if (scenePhase == 4) {
-            alpha += 0.005F;
-            if (alpha > 1F) {
-                alpha = 1F;
-            }
-            drawBlackBackground(alpha);
-            if (alpha == 1F) {
-                alpha = 0;
-                scenePhase++;
-            }
-        }
+    //     // Scene gradually darker
+    //     if (scenePhase == 4) {
+    //         alpha += 0.005F;
+    //         if (alpha > 1F) {
+    //             alpha = 1F;
+    //         }
+    //         drawBlackBackground(alpha);
+    //         if (alpha == 1F) {
+    //             alpha = 0;
+    //             scenePhase++;
+    //         }
+    //     }
 
-        if (scenePhase == 5) {
-            drawBlackBackground(1F);
-            alpha += 0.005F;
-            if (alpha > 1F) {
-                alpha = 1F;
-            }
-            String text = "Setelah perjuangan berat melawan monster  penunggu gua,\n"
-                        + "akhirnya petualang berhasil menyelamatkan pulau ini.\n"
-                        + "Tapi ini bukan akhir dari segalanya, karena monster\n"
-                        + "di pulau ini masih terus bermunculan tanpa henti.\n"
-                        + "Keberadaan penduduk pulau lainnya masih belum diketahui."
-                        + "Petualangan Echoes of Ethernity baru saja dimulai.";
-            drawString(alpha, 30F, 200, text, 70);
-            gamePanel.playMusic(23);
+    //     if (scenePhase == 5) {
+    //         drawBlackBackground(1F);
+    //         alpha += 0.005F;
+    //         if (alpha > 1F) {
+    //             alpha = 1F;
+    //         }
+    //         String text = "Setelah perjuangan berat melawan monster  penunggu gua,\n"
+    //                     + "akhirnya petualang berhasil menyelamatkan pulau ini.\n"
+    //                     + "Tapi ini bukan akhir dari segalanya, karena monster\n"
+    //                     + "di pulau ini masih terus bermunculan tanpa henti.\n"
+    //                     + "Keberadaan penduduk pulau lainnya masih belum diketahui."
+    //                     + "Petualangan Echoes of Ethernity baru saja dimulai.";
+    //         drawString(alpha, 30F, 200, text, 70);
+    //         gamePanel.playMusic(23);
             
-            if (counterReached(600)) {
-                scenePhase++;
-            }
-        }
+    //         if (counterReached(600)) {
+    //             scenePhase++;
+    //         }
+    //     }
 
-        if (scenePhase == 6) {
-            drawBlackBackground(1F);
-            drawString(1F, 100F, gamePanel.screenHeight / 2, "Echoes of Eternity", 40);
+    //     if (scenePhase == 6) {
+    //         drawBlackBackground(1F);
+    //         drawString(1F, 100F, gamePanel.screenHeight / 2, "Echoes of Eternity", 40);
             
-            if (counterReached(480)) {
-                scenePhase++;
-            }
-        }
+    //         if (counterReached(480)) {
+    //             scenePhase++;
+    //         }
+    //     }
 
-        if (scenePhase == 7) {
-            drawBlackBackground(1F);
-            y = gamePanel.screenHeight / 2;
-            drawString(1F, 30F, y, endCredit, 40);
+    //     if (scenePhase == 7) {
+    //         drawBlackBackground(1F);
+    //         y = gamePanel.screenHeight / 2;
+    //         drawString(1F, 30F, y, endCredit, 40);
             
-            if (counterReached(120)) {
-                scenePhase++;
-            }
-        }
+    //         if (counterReached(120)) {
+    //             scenePhase++;
+    //         }
+    //     }
 
-        // Scroll credits
-        if (scenePhase == 8) {
-            drawBlackBackground(1F);
-            y--;
-            drawString(1F, 30F, y, endCredit, 40);
-        }
+    //     // Scroll credits
+    //     if (scenePhase == 8) {
+    //         drawBlackBackground(1F);
+    //         y--;
+    //         drawString(1F, 30F, y, endCredit, 40);
+    //     }
 
-    }
+    // }
 
     public boolean counterReached(int target) {
         boolean counterReached = false;

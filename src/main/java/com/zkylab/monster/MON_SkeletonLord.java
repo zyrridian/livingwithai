@@ -151,7 +151,7 @@ public class MON_SkeletonLord extends Entity {
         Progress.skeletonLordDefeated = true;
         
         // Restore the previous music
-        gamePanel.stopMusic();
+        // gamePanel.stopMusic();
         gamePanel.playMusic(7);
 
         // Remove the iron doors

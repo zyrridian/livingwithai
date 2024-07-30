@@ -10,7 +10,9 @@ import com.zkylab.common.KeyHandler;
 import com.zkylab.object.OBJ_Fireball;
 import com.zkylab.object.OBJ_Key;
 import com.zkylab.object.OBJ_Lantern;
+import com.zkylab.object.OBJ_Shield_God;
 import com.zkylab.object.OBJ_Shield_Normal;
+import com.zkylab.object.OBJ_Sword_God;
 import com.zkylab.object.OBJ_Sword_Normal;
 import com.zkylab.object.OBJ_Tent;
 
@@ -130,6 +132,8 @@ public class Player extends Entity {
         inventory.add(new OBJ_Key(gamePanel));
         inventory.add(new OBJ_Tent(gamePanel));
         inventory.add(new OBJ_Lantern(gamePanel));
+        // inventory.add(new OBJ_Sword_God(gamePanel));
+        // inventory.add(new OBJ_Shield_God(gamePanel));
     }
 
     /**
@@ -517,7 +521,13 @@ public class Player extends Entity {
             if (life <= 0) {
                 gamePanel.gameState = GamePanel.GAME_OVER_STATE;
                 gamePanel.ui.commandNumber = -1;
-                gamePanel.stopMusic();
+                if (gamePanel.currentArea == GamePanel.OUTSIDE_AREA) {
+                    gamePanel.stopMusic(22);
+                } else if (gamePanel.currentArea == GamePanel.INDOOR_AREA) {
+                    gamePanel.stopMusic(23);
+                } else if (gamePanel.currentArea == GamePanel.DUNGEON_AREA) {
+                    gamePanel.stopMusic(7);
+                }
                 gamePanel.playSoundEffect(25);
             }
         }

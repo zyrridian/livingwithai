@@ -50,8 +50,9 @@ public class NPC_Musician extends Entity {
         dialogues[1][3] = "Lagu itu memiliki vokal, bahkan aransemen musik\nyang beragam.";
         dialogues[1][4] = "Bahkan suara nyanyiannya bisa kita ganti\nmenggunakan suara tokoh terkenal.";
         dialogues[1][5] = "Walaupun belum sempurna, namun itu cukup\nmenyenangkan untuk hiburan.";
-        dialogues[1][6] = "Aku akan menggunakan model AI suara presiden\nkita untuk menyanyikan laguku, dan menunjukkannya kepada Librarian! Hahaha.";
-        dialogues[1][7] = "Dia pasti tertipu dan menganggap itu nyata.";
+        dialogues[1][6] = "Aku akan menggunakan model AI suara presiden\nkita untuk menyanyikan laguku, dan\nmenunjukkannya kepada Librarian!";
+        dialogues[1][7] = "Hahaha.";
+        dialogues[1][8] = "Dia pasti tertipu dan menganggap itu nyata.";
         dialogues[2][0] = "Kemarin aku menggunakan AI mengoptimalkan\nkualitas suara dan mixing.";
         dialogues[2][1] = "Tidak sempurna, namun cukup membantu untuk\nmenghemat waktu.";
         dialogues[2][2] = "Dan terkadang, aku cukup ceroboh dan sering\nmelupakan detail kecil.";

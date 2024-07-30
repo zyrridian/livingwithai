@@ -447,16 +447,16 @@ public class GamePanel extends JPanel implements Runnable {
      * @param i The index of the music file.
      */
     public void playMusic(int i) {
-        music.setFile(i);
-        music.play();
-        music.loop();
+        // music.setFile(i);
+        music.play(i);
+        music.loop(i);
     }
 
     /**
      * Stops the background music.
      */
-    public void stopMusic() {
-        music.stop();
+    public void stopMusic(int i) {
+        music.stop(i);
     }
 
     /**
@@ -465,8 +465,8 @@ public class GamePanel extends JPanel implements Runnable {
      * @param i The index of the sound effect file.
      */
     public void playSoundEffect(int i) {
-        sfx.setFile(i);
-        sfx.play();
+        // sfx.setFile(i);
+        sfx.play(i);
     }
 
     /**
@@ -474,7 +474,16 @@ public class GamePanel extends JPanel implements Runnable {
      */
     public void changeArea() {
         if (nextArea != currentArea) {
-            stopMusic();
+            // Stop music
+            if (currentArea == OUTSIDE_AREA) {
+                stopMusic(22);
+            } else if (currentArea == INDOOR_AREA) {
+                stopMusic(23);
+            } else if (currentArea == DUNGEON_AREA) {
+                stopMusic(7);
+            }
+
+            // Play new music
             if (nextArea == OUTSIDE_AREA)
                 playMusic(22);
             if (nextArea == INDOOR_AREA)
